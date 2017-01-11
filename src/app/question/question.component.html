@@ -1,0 +1,21 @@
+<div class="container">
+    <form>
+        <span>
+            <h1>Frage {{count}} von {{length}}</h1>
+        </span>
+        <hr>
+        <span [@myTrigger]='state' [(ngModel)]="currentQuestion" ngDefaultControl name="title">{{currentQuestion?.title}}</span>
+      
+        <div *ngIf="isLoaded">
+            <app-answer (nextQuestion)="nextQuestion($event)" [questionId] ='questionId'></app-answer>
+        </div>
+        <!--<app-done></app-done>-->
+    </form>
+</div>
+
+<!--<div class="row answers">
+            <div class="col l6 m12 s12" *ngFor="let answer of question.answers; let i = index">
+              <input #check type="checkbox" id="answer{{question.id}}{{i}}" (change)="answerClicked(i, check.checked)" [disabled]="!check.checked && hasMarkedAnswer">
+              <label htmlFor="answer{{question.id}}{{i}}" class="grey-text text-darken-3">{{ answer.title }}</label>
+            </div>
+          </div>-->
