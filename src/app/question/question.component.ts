@@ -19,7 +19,7 @@ import { shuffle } from '../helpers/common';
           opacity: '0', transform: 'translateX(20px)'
         }),
 
-        animate('1750ms')
+        animate('500ms')
       ])
     ]
   )]

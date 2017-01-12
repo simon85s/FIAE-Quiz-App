@@ -28,22 +28,24 @@ export class DataComponent implements OnInit {
       'questionTitle': new FormControl('', Validators.required),
       'answer1': new FormControl('', Validators.required),
       'answer2': new FormControl('', Validators.required),
-      'answer3': new FormControl('',Validators.required)
+      'answer3': new FormControl('', Validators.required),
+      'answer4': new FormControl('', Validators.required)
     })
 
     this.form.valueChanges.subscribe(data => console.log(data));
   }
 
-  generateNewAnswers = (a1: string, a2: string, a3: string, c1: string, c2: string, c3: string) => {
+  generateNewAnswers = (a1: string, a2: string, a3: string, a4:string, c1: boolean, c2: boolean, c3: boolean,c4:boolean) => {
 
     setTimeout(() => {
-
+      console.log(a4)
+       console.log(c4)
       this.newAnswers.push(
 
         new Answer(null, this.questionId, a1, c1),
         new Answer(null, this.questionId, a2, c2),
-        new Answer(null, this.questionId, a3, c3))
-
+        new Answer(null, this.questionId, a3, c3),
+        new Answer(null, this.questionId, a4, c4))
 
       this.answerService.submitNewAnswers(this.newAnswers).subscribe()
     }, 2500)
@@ -54,7 +56,8 @@ export class DataComponent implements OnInit {
     this.questionService.submitNewQuestion(this.newQuestion)
       .subscribe(null, error => console.log(error), () => {
         console.log("Question inserted...calling Service to insert Answers"), this.questionService.getLastQuestionId()
-          .subscribe(q => this.questionId = q[q.length - 1]._id, error => console.log(error), () => console.log("created Answers"))
+          .subscribe(q => this.questionId = q[q.length - 1]._id,
+          error => console.log(error), () => { console.log("created Answers"), this.ngOnInit() })
       });
   }
 }

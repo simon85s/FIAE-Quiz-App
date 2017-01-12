@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable'
 @Injectable()
 export class AnswerService {
 
-  private url: string = 'http://localhost:3000/api/answers'
+  private url: string = 'http://localhost:3000/api/answers/'
 
   constructor(private http: Http) {
     console.log('Answer Service Initialized')
@@ -22,6 +22,12 @@ export class AnswerService {
       .catch(this.handleError)
   };
 
+  deleteAnswers(answerIds:string[]) {
+  console.log("answerid", answerIds)
+  return Observable.from(answerIds).flatMap(a => {
+     return this.http.delete(this.url+a).map(res => res.json())
+  })
+}
 
   submitNewAnswers(answers: Answer[]): Observable<any> {
 

@@ -1,9 +1,10 @@
  <div class="form-group">
             <div class="checkbox">
-                <ul>
-                    <li  *ngFor="let answer of answers;let i = index" (click)="select(answer)">
-                        <label>
-                                <input #check type="checkbox" value=""(change)="answerClicked(i, check.checked)" [disabled]="!check.checked && hasMarkedAnswer"> {{answer.answer}} {{hasMarkedAnswer}} 
+                <ul *ngIf="isLoaded">
+                    <li  *ngFor="let answer of answers;let i = index" [@myTrigger]='state' (click)="select(answer)">
+                        <label >
+                                <input #check type="checkbox" value=""(change)="answerClicked(i, check.checked)" [disabled]="!check.checked && hasMarkedAnswer"> 
+                                {{answer.answer}} 
                         </label>
                     </li>
                 </ul>

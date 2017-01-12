@@ -12,11 +12,16 @@ ul {
   text-indent: -15px;
   margin-left: 18px;
 }
+
 input {
   text-align: center;
   vertical-align: middle;
-  margin-left:18px
+  margin-left:18px;
+  *overflow: hidden;
+  position: relative;
+  
 }
+
 
 .theme { /* any shared styles */ }
  .theme.blue { color: blue; }

@@ -5,7 +5,7 @@ import {Question} from '../question/question.component'
 @Injectable()
 export class QuestionService {
 
- private url:string = 'http://localhost:3000/api/questions';
+ private url:string = 'http://localhost:3000/api/questions/';
 
   constructor(private http:Http) { 
      console.log('Question Service Initialized')
@@ -13,7 +13,7 @@ export class QuestionService {
  
  getQuestions():Observable<any>
  {
-   return this.http.get(this.url).flatMap((res:Response) => <any>res.json());
+   return this.http.get(this.url).flatMap((res:Response) => <any>res.json().filter(res =>res._id != null));
  }
 
  getLastQuestionId():Observable<any[]>{
@@ -21,6 +21,17 @@ export class QuestionService {
   return this.http.get(this.url).map((res:Response) => <any[]>res.json())
   .catch(this.handleError);
   
+}
+
+getQuestionList():Observable<any[]>
+ {
+   return this.http.get(this.url).map((res:Response) => <any[]>res.json());
+ }
+
+deleteQuestion(questionId:string) {
+  console.log("questionid", questionId)
+    return this.http.delete(this.url+questionId).map(res => res.json()
+    .filter(q => q.id == questionId))
 }
 
  submitNewQuestion(newQuestion:Question):Observable<any> {

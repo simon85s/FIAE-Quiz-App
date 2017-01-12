@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongojs = require('mongojs');
 var db = mongojs('mongodb://user1:user123@ds037015.mlab.com:37015/fiae_quizdb', ['questions'])
+ObjectID = require('mongodb').ObjectID
 
 router.get('/questions', function(req, res, next){
     // Website you wish to allow to connect
@@ -45,6 +46,21 @@ router.post('/questions', function(req, res, next){
             res.json(question);
         });
     }
-});
+}),
+    
+router.delete('/questions/:id', function(req, res, next){
+
+   console.log("para",req.params.id)
+    db.questions.remove({_id: mongojs.ObjectID(req.params.id)}), function(err,question){
+
+        if(err){
+            
+            res.send(error)
+        }
+        res.json(question)
+    }
+  });
+
+
 
 module.exports = router;

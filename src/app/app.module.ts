@@ -10,7 +10,8 @@ import { QuestionComponent } from './question/question.component';
 import { AnswerComponent } from './answer/answer.component';
 import { DataComponent } from './data/data.component';
 import {AppRoutingModule,RoutableComponents} from 'app/app.routing.module';
-import { DoneComponent } from './done/done.component'
+import { DoneComponent } from './done/done.component';
+import { QuestionListComponent } from './question-list/question-list.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DoneComponent } from './done/done.component'
     DataComponent,
     RoutableComponents,
     DoneComponent,
-    HighlightDirective
+    HighlightDirective,
+    QuestionListComponent
   ],
   imports: [
     AppRoutingModule,

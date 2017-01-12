@@ -6,8 +6,8 @@
         <hr>
         <span [@myTrigger]='state' [(ngModel)]="currentQuestion" ngDefaultControl name="title">{{currentQuestion?.title}}</span>
       
-        <div *ngIf="isLoaded">
-            <app-answer (nextQuestion)="nextQuestion($event)" [questionId] ='questionId'></app-answer>
+        <div>
+            <app-answer (nextQuestion)="nextQuestion($event)" [questionId] ='questionId' [state]="isLoaded"></app-answer>
         </div>
         <!--<app-done></app-done>-->
     </form>

@@ -18,7 +18,11 @@
         <label for="answer3">Antwort 3</label> 
         <input type="checkbox" #c3 id="correct3"> richtig?
         <input type="text" #a3 formControlName="answer3" class="form-control">
+
+        <label for="answer3">Antwort 4</label> 
+        <input type="checkbox" #c4 id="correct4"> richtig?
+        <input type="text" #a4 formControlName="answer4" class="form-control">
       </div>
-      <button type="submit" [disabled] ="form.invalid" class="btn btn-default" (click)="generateNewAnswers(a1.value,a2.value,a3.value, c1.checked, c2.checked, c3.checked)" (click)="generateNewQuestion()">Submit</button>
+      <button type="submit" [disabled] ="form.invalid" class="btn btn-default" (click)="generateNewAnswers(a1.value,a2.value,a3.value,a4.value,c1.checked, c2.checked, c3.checked, c4.checked)" (click)="generateNewQuestion()">Submit</button>
     </form>
 </div>

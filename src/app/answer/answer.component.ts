@@ -15,20 +15,20 @@ import { HighlightDirective } from '../Directives/highlight.directive';
       })),
       transition('fadeOut => *', [
         style({
-          opacity: '0', transform: 'translateX(-35px)'
+          opacity: '0', transform: 'translateX(335px)'
         }),
 
-        animate('1000ms')
+        animate('500ms')
       ]),
       state('fadeOut', style({
         opacity: '1'
       })),
       transition('* => *', [
         style({
-          opacity: '0', transform: 'translateX(-35px)'
+          opacity: '0', transform: 'translateX(100px)'
         }),
 
-        animate('1000ms')
+        animate('500ms')
       ]),
     ]
   )]
@@ -37,7 +37,8 @@ import { HighlightDirective } from '../Directives/highlight.directive';
 @Injectable()
 export class AnswerComponent implements OnChanges {
 
-  state: string = 'fadeIn';
+  
+  
 
   private answers: Answer[] = []
   private selectedAnswer: Answer;
@@ -50,7 +51,7 @@ export class AnswerComponent implements OnChanges {
 
   @Output() public nextQuestion = new EventEmitter<boolean>();
   @Input() questionId: string = '';
-
+  @Input() state:string = ''
   constructor(private answerService: AnswerService) { }
 
 
@@ -76,18 +77,19 @@ export class AnswerComponent implements OnChanges {
     console.log(this.selectedAnswer)
   }
   get answerIsCorrect(): boolean {
-    return this.selectedAnswer.isCorrect === 'true';
+    console.log(this.selectedAnswer.isCorrect)
+    return this.selectedAnswer.isCorrect;
+    
   }
 
   toggleState(button: HTMLElement) {
 
     this.color = this.answerIsCorrect ? 'green' : 'red'
-
     this.nextTimeout = setTimeout(() => {
       this.nextQuestion.emit(true);
       this._markedAnswer = -1;
       this.nextTimeout = null;
-    }, 1500);
+    }, 500);
   }
 
   get hasMarkedAnswer() {
@@ -100,7 +102,7 @@ export class AnswerComponent implements OnChanges {
 
   get correctCount() {
 
-    this.selectedAnswers.filter(a => a.isCorrect === 'true').forEach((a => this.correctAnswerCount++))
+    this.selectedAnswers.filter(a => a.isCorrect).forEach((a => this.correctAnswerCount++))
     return this.correctAnswerCount
   }
 
@@ -120,6 +122,6 @@ export class Answer {
   constructor(public id: string,
     public questionId: string,
     public answer: string,
-    public isCorrect: string,
+    public isCorrect: boolean,
   ) { }
 }

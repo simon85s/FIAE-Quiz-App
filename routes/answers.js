@@ -58,6 +58,18 @@ router.post('/answers', function(req, res, next){
         });
     }
 });
+
+router.delete('/answers/:id', function(req, res, next){
+
+    db.answers.remove({_id: mongojs.ObjectID(req.params.id)}), function(err,answer){
+
+        if(err){
+            
+            res.send(error)
+        }
+        res.json(answer)
+    }
+  });
 //Add questions
 // router.post('/questions', function(req, res, next){
 
