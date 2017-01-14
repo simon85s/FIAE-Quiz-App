@@ -13,7 +13,7 @@ import {Observable} from 'rxjs/Observable'
 export class QuestionListComponent implements OnInit {
 
   constructor(private questionService:QuestionService,private answerService:AnswerService) { }
-
+  ids:any[] =[];
   questions:Question[]=[]
   ngOnInit() {
 
@@ -21,12 +21,13 @@ export class QuestionListComponent implements OnInit {
     error => console.log(error), () => console.log(this.questions))
   }
 
-  test(question:any){
-    let ids = this.answerService.getAnswers(question.id).subscribe();
-    console.log("ids",ids);
-    this.answerService.deleteAnswers(["58780c57e74900191c8225fa","58780c57e74900191c8225f9","58780c57e74900191c8225f8"]).subscribe(data => console.log(data));
-    this.questionService.deleteQuestion(question._id).subscribe(data => this.questions.splice(data),
-    error => console.log(error), () => (data => console.log(data)))
-   
+  deleteQuestion(question:any){
+
+    this.answerService.getAnswers(question._id).delay(300).subscribe(a => this.ids.push(a._id))
+    console.log("IDS", this.ids)
+    this.answerService.deleteAnswers(this.ids).subscribe(data => console.log("DATA",data),
+    error => console.log(error), () => (this.questionService.deleteQuestion(question._id).subscribe(data => this.questions.splice(data),
+    error => console.log(error), () => (this.ngOnInit());
+    
   }
 }
