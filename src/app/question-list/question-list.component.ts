@@ -26,8 +26,7 @@ export class QuestionListComponent implements OnInit {
     this.answerService.getAnswers(question._id).delay(300).subscribe(a => this.ids.push(a._id))
     console.log("IDS", this.ids)
     this.answerService.deleteAnswers(this.ids).subscribe(data => console.log("DATA",data),
-    error => console.log(error), () => (this.questionService.deleteQuestion(question._id).subscribe(data => this.questions.splice(data),
-    error => console.log(error), () => (this.ngOnInit());
-    
+    error => console.log(error), () => this.questionService.deleteQuestion(question._id).subscribe(data => this.questions.splice(data),
+    error => console.log(error), () => this.ngOnInit()));   
   }
 }

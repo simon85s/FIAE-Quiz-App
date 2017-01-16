@@ -1,6 +1,7 @@
-
-<div class="btn-group">
-  <ul *ngFor="let question of questions"[(ngModel)]="questions" ngDefaultControl>{{question?.title}}
+<div class="container">
+  <div class="btn-group">
+    <ul *ngFor="let question of questions">{{question?.title}}
       <span id="deleteQuestion" class="glyphicon glyphicon-remove-circle" (click)="deleteQuestion(question)"></span>
- </ul>
+    </ul>
+  </div>
 </div>

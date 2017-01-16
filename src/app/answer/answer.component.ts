@@ -1,6 +1,7 @@
 import { AnswerService } from '../services/answer.service';
 import { Component, OnInit, OnChanges, Injectable, Output, EventEmitter, Input, animate, style, trigger, state, transition } from '@angular/core';
 import { HighlightDirective } from '../Directives/highlight.directive';
+import { SimpleChanges } from '@angular/core'
 
 @Component({
   selector: 'app-answer',
@@ -37,26 +38,25 @@ import { HighlightDirective } from '../Directives/highlight.directive';
 @Injectable()
 export class AnswerComponent implements OnChanges {
 
-  
-  
-
   private answers: Answer[] = []
   private selectedAnswer: Answer;
   private selectedAnswers: Answer[] = []
   private _markedAnswer: number = -1;
   private nextTimeout: any = null;
-  private color: string = 'grey';
+  private color: string = '#0088c5';
   private correctAnswerCount: number = 0;
   private isLoaded = false;
 
   @Output() public nextQuestion = new EventEmitter<boolean>();
   @Input() questionId: string = '';
-  @Input() state:string = ''
+  @Input() state: string = ''
+
   constructor(private answerService: AnswerService) { }
 
-
-  ngOnChanges(changes: any) {
-    this.getAnswers(this.questionId);
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['questionId'] != null) {
+      this.getAnswers(this.questionId);
+    }
   }
 
 
@@ -72,15 +72,9 @@ export class AnswerComponent implements OnChanges {
   }
 
 
-  select(answer: Answer) {
-    this.selectedAnswer = answer;
-    console.log(this.selectedAnswer)
-  }
-  get answerIsCorrect(): boolean {
-    console.log(this.selectedAnswer.isCorrect)
-    return this.selectedAnswer.isCorrect;
-    
-  }
+  select(answer: Answer) { this.selectedAnswer = answer };
+
+  get answerIsCorrect(): boolean { return this.selectedAnswer.isCorrect };
 
   toggleState(button: HTMLElement) {
 

@@ -1,14 +1,14 @@
 <div class="form-group">
     <div class="box1">
         <ul>
-            <li *ngFor="let answer of answers;let i = index" [@myTrigger]='answer' (click)="select(answer)">
+            <li *ngFor="let answer of answers;let i = index" (click)="select(answer)">
                 <label>
-                                <input #check type="checkbox" value=""(change)="answerClicked(i, check.checked)" [disabled]="!check.checked && hasMarkedAnswer"> 
-                                {{answer.answer}} 
-                        </label>
+                    <input #check type="checkbox" value=""(change)="answerClicked(i, check.checked)" [disabled]="!check.checked && hasMarkedAnswer"> 
+                    {{(answer.answer)}} 
+                </label>
             </li>
         </ul>
-        <div class="theme" *ngIf="hasMarkedAnswer" [hidden]="!hasMarkedAnswer">
+        <div class="button" *ngIf="hasMarkedAnswer" [hidden]="!hasMarkedAnswer">
             <span><button [ngStyle]="{'background-color': color}"  #button type="submit"  (click)="toggleState(button)">Submit</button></span>
         </div>
     </div>

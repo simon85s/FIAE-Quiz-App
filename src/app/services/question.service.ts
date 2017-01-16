@@ -38,7 +38,7 @@ deleteQuestion(questionId:string) {
   
     let headers = new Headers({ 'Content-Type': 'application/json' });  
     let options = new RequestOptions({ headers: headers });
-    let fileObj = {"title":newQuestion}
+    let fileObj = {"title":newQuestion.title,"subject":newQuestion.subject}
 
 		return this.http.post(this.url,
       JSON.stringify(fileObj), options	

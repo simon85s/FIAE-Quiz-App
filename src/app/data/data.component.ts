@@ -18,28 +18,29 @@ export class DataComponent implements OnInit {
 
   questionId: string;
   form: FormGroup;
-  newQuestion: Question;
+  question: string;
   newAnswers: Answer[] = []
-
+  subjects:Array<string>= ["BWL", "ITS" , "WIRTSCHAFT"]
+  selectedSubject:string = ''
 
   ngOnInit() {
 
-    this.form = new FormGroup({
-      'questionTitle': new FormControl('', Validators.required),
-      'answer1': new FormControl('', Validators.required),
-      'answer2': new FormControl('', Validators.required),
-      'answer3': new FormControl('', Validators.required),
-      'answer4': new FormControl('', Validators.required)
-    })
 
-    this.form.valueChanges.subscribe(data => console.log(data));
+    this.form = this.fb.group({
+      s:["",Validators.required],
+      questionTitle: ["",Validators.required],
+      answer1: ["", Validators.required,Validators.minLength(10)],
+      answer2: ["", Validators.required,Validators.minLength(10)],
+      answer3: ["", Validators.required,Validators.minLength(10)],
+      answer4: ["", Validators.required,Validators.minLength(10)]
+    })
+    // this.form.valueChanges.subscribe(data => console.log(data));
   }
 
-  generateNewAnswers = (a1: string, a2: string, a3: string, a4:string, c1: boolean, c2: boolean, c3: boolean,c4:boolean) => {
+  generateNewAnswers = (a1: string, a2: string, a3: string, a4: string, c1: boolean, c2: boolean, c3: boolean, c4: boolean) => {
 
     setTimeout(() => {
-      console.log(a4)
-       console.log(c4)
+
       this.newAnswers.push(
 
         new Answer(null, this.questionId, a1, c1),
@@ -52,8 +53,8 @@ export class DataComponent implements OnInit {
   }
 
   generateNewQuestion = () => {
-
-    this.questionService.submitNewQuestion(this.newQuestion)
+    let question = new Question(undefined,this.question,this.selectedSubject)
+    this.questionService.submitNewQuestion(question)
       .subscribe(null, error => console.log(error), () => {
         console.log("Question inserted...calling Service to insert Answers"), this.questionService.getLastQuestionId()
           .subscribe(q => this.questionId = q[q.length - 1]._id,

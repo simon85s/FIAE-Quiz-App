@@ -23,7 +23,7 @@ export class AnswerService {
   };
 
   deleteAnswers(answerIds:any[]) {
-debugger;
+
   console.log("ANSWERIDS", answerIds)
 
   return Observable.from(answerIds).flatMap(a => { (console.log("TEST",a))

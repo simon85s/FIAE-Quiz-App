@@ -1,4 +1,4 @@
-import {Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input , SimpleChanges} from '@angular/core';
 import {Answer} from '../answer/answer.component';
 import {Question} from '../question/question.component';
 
@@ -11,8 +11,11 @@ export class DoneComponent implements OnInit {
 
   constructor() { }
   @Input() selectedAnswers:Answer[];
-  @Input() selectedQuestions:Question[]; 
+  @Input() selectedQuestions:Question[]=[]; 
+  isDone:boolean = false;
   ngOnInit() {
-  }
 
+  
+  }
+  
 }

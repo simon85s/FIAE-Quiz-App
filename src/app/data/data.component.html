@@ -2,9 +2,18 @@
   <h1>Neue Frage</h1>
   <hr>
   <form [formGroup]="form">
+
+    <div class="form-group">
+      <label for="subject">Fach</label>
+     <select class="form-control" #s1 formControlName="s"  [(ngModel)]="selectedSubject" name="s" >
+        <option  *ngFor="let subject of subjects; let i = index "> {{subject}}</option>
+     </select>
+     
+
+    </div>
     <div class="form-group">
       <label for="question">Frage</label>
-      <input type="text" formControlName="questionTitle" [(ngModel)]="newQuestion" name="title" class="form-control">
+      <input type="text" formControlName="questionTitle" [(ngModel)]="question" name="title" class="form-control">
     </div>
     <div class="form-group">
       <label for="answer1">Antwort 1</label>
@@ -14,7 +23,7 @@
       <label for="answer2">Antwort 2</label>
       <input type="checkbox" #c2 id="correct2"> richtig?
       <input type="text" #a2 formControlName="answer2" class="form-control">
-
+ 
       <label for="answer3">Antwort 3</label>
       <input type="checkbox" #c3 id="correct3"> richtig?
       <input type="text" #a3 formControlName="answer3" class="form-control">
