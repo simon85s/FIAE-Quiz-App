@@ -1,32 +1,40 @@
-import {Component, OnInit} from '@angular/core';
-import {QuestionService} from '../services/question.service';
-import {Question} from '../question/question.component';
-import {AnswerService} from '../services/answer.service'
-import {Observable} from 'rxjs/Observable'
+import { Component, OnInit } from '@angular/core';
+import { QuestionService } from '../services/question.service';
+import { Question } from '../question/question.component';
+import { AnswerService } from '../services/answer.service'
+import { Observable } from 'rxjs/rx'
 
 @Component({
   selector: 'app-question-list',
   templateUrl: './question-list.component.html',
   styleUrls: ['./question-list.component.css'],
-  providers: [QuestionService,AnswerService]
+  providers: [QuestionService, AnswerService]
 })
 export class QuestionListComponent implements OnInit {
 
-  constructor(private questionService:QuestionService,private answerService:AnswerService) { }
-  ids:any[] =[];
-  questions:Question[]=[]
-  ngOnInit() {
+  constructor(private questionService: QuestionService, private answerService: AnswerService) { }
 
-    this.questionService.getQuestionList().subscribe(q => this.questions = q, 
-    error => console.log(error), () => console.log(this.questions))
+  ids: string[] = [];
+  questions: Question[] = []
+
+  ngOnInit() {
+    /*retrieve all questions*/
+    this.questionService.getQuestionList().subscribe(question => this.questions = question,
+      e => {}, () => console.log(this.questions))
   }
 
-  deleteQuestion(question:any){
+  deleteQuestion(question: any) {
+    /*retrieve all answerids to delete*/
+    this.answerService.getAnswers(question._id).delay(300).subscribe(answer => this.ids.push(answer._id), 
+    e => {},() => { source.subscribe(), location.reload() })
+      
+    /*subscribe to the observables*/
+    let source = Observable.forkJoin(this.answerService.deleteAnswers(this.ids),
+      this.questionService.deleteQuestion(question._id))  
+  }
 
-    this.answerService.getAnswers(question._id).delay(300).subscribe(a => this.ids.push(a._id))
-    console.log("IDS", this.ids)
-    this.answerService.deleteAnswers(this.ids).subscribe(data => console.log("DATA",data),
-    error => console.log(error), () => this.questionService.deleteQuestion(question._id).subscribe(data => this.questions.splice(data),
-    error => console.log(error), () => this.ngOnInit()));   
+  get length():boolean {
+    
+    return this.questions.length > 10;
   }
 }

@@ -17,16 +17,14 @@ export class AnswerService {
   getAnswers(questionid:string): Observable<any> {
     console.log("getAnswers Id: ", questionid)
     return this.http.get(this.url)
-      .flatMap((res: any) => <any>res.json()
+      .switchMap((res: any) => <any>res.json()
         .filter(a => a.questionid === questionid))
-      .catch(this.handleError)
   };
 
   deleteAnswers(answerIds:any[]) {
-
   console.log("ANSWERIDS", answerIds)
 
-  return Observable.from(answerIds).flatMap(a => { (console.log("TEST",a))
+  return Observable.from(answerIds).flatMap(a => { (console.log("DELETING",a))
      return this.http.delete(this.url+a).map(res => res.json())
   })
 }

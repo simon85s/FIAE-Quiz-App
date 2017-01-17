@@ -20,21 +20,25 @@ export class DataComponent implements OnInit {
   form: FormGroup;
   question: string;
   newAnswers: Answer[] = []
-  subjects:Array<string>= ["BWL", "ITS" , "WIRTSCHAFT"]
+  subjects:Array<string>= ["bwl", "its" , "wi"]
   selectedSubject:string = ''
 
   ngOnInit() {
 
 
     this.form = this.fb.group({
-      s:["",Validators.required],
-      questionTitle: ["",Validators.required],
-      answer1: ["", Validators.required,Validators.minLength(10)],
-      answer2: ["", Validators.required,Validators.minLength(10)],
-      answer3: ["", Validators.required,Validators.minLength(10)],
-      answer4: ["", Validators.required,Validators.minLength(10)]
+      subject:new FormControl('',[]),
+      questionTitle: new FormControl('',[]),
+      answer1: new FormControl('',[]),
+      answer2: new FormControl('',[]),
+      answer3: new FormControl('',[]),
+      answer4: new FormControl('',[]),
+      checkbox1: new FormControl('',[]),
+      checkbox2: new FormControl('',[]),
+      checkbox3: new FormControl('',[]),
+      checkbox4: new FormControl('',[])
     })
-    // this.form.valueChanges.subscribe(data => console.log(data));
+    this.form.valueChanges.subscribe(a => console.log("answer1 changed"))
   }
 
   generateNewAnswers = (a1: string, a2: string, a3: string, a4: string, c1: boolean, c2: boolean, c3: boolean, c4: boolean) => {
@@ -55,7 +59,7 @@ export class DataComponent implements OnInit {
   generateNewQuestion = () => {
     let question = new Question(undefined,this.question,this.selectedSubject)
     this.questionService.submitNewQuestion(question)
-      .subscribe(null, error => console.log(error), () => {
+      .subscribe(e => {}, error => console.log(error), () => {
         console.log("Question inserted...calling Service to insert Answers"), this.questionService.getLastQuestionId()
           .subscribe(q => this.questionId = q[q.length - 1]._id,
           error => console.log(error), () => { console.log("created Answers"), this.ngOnInit() })

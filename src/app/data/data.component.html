@@ -5,10 +5,10 @@
 
     <div class="form-group">
       <label for="subject">Fach</label>
-     <select class="form-control" #s1 formControlName="s"  [(ngModel)]="selectedSubject" name="s" >
+      <select class="form-control" #s1 formControlName="subject" [(ngModel)]="selectedSubject" name="s">
         <option  *ngFor="let subject of subjects; let i = index "> {{subject}}</option>
      </select>
-     
+
 
     </div>
     <div class="form-group">
@@ -17,19 +17,19 @@
     </div>
     <div class="form-group">
       <label for="answer1">Antwort 1</label>
-      <input type="checkbox" #c1 id="correct1"> richtig?
+      <input type="checkbox" #c1 formControlName="checkbox1">richtig?
       <input type="text" #a1 formControlName="answer1" class="form-control">
 
       <label for="answer2">Antwort 2</label>
-      <input type="checkbox" #c2 id="correct2"> richtig?
+      <input type="checkbox" #c2 formControlName="checkbox2">richtig?
       <input type="text" #a2 formControlName="answer2" class="form-control">
- 
+
       <label for="answer3">Antwort 3</label>
-      <input type="checkbox" #c3 id="correct3"> richtig?
+      <input type="checkbox" #c3 formControlName="checkbox3">richtig?
       <input type="text" #a3 formControlName="answer3" class="form-control">
 
       <label for="answer3">Antwort 4</label>
-      <input type="checkbox" #c4 id="correct4"> richtig?
+      <input type="checkbox" #c4 formControlName="checkbox4">richtig?
       <input type="text" #a4 formControlName="answer4" class="form-control">
     </div>
     <button type="submit" [disabled]="form.invalid" class="btn btn-default" (click)="generateNewAnswers(a1.value,a2.value,a3.value,a4.value,c1.checked, c2.checked, c3.checked, c4.checked)"

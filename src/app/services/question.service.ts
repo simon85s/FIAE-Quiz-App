@@ -1,52 +1,49 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers,Response,RequestOptions} from '@angular/http';
-import {Observable} from 'rxjs/Observable'
-import {Question} from '../question/question.component'
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable'
+import { Question } from '../question/question.component'
 @Injectable()
 export class QuestionService {
 
- private url:string = 'http://localhost:3000/api/questions/';
+  private url: string = 'http://localhost:3000/api/questions/';
 
-  constructor(private http:Http) { 
-     console.log('Question Service Initialized')
+  constructor(private http: Http) {
+    console.log('Question Service Initialized')
   }
- 
- getQuestions():Observable<any>
- {
-   return this.http.get(this.url).flatMap((res:Response) => <any>res.json().filter(res =>res._id != null));
- }
 
- getLastQuestionId():Observable<any[]>{
+  getQuestions(): Observable<any> {
+    return this.http.get(this.url).flatMap((res: Response) => <any>res.json().filter(res => res._id != null));
+  }
 
-  return this.http.get(this.url).map((res:Response) => <any[]>res.json())
-  .catch(this.handleError);
-  
-}
+  getLastQuestionId(): Observable<any[]> {
 
-getQuestionList():Observable<any[]>
- {
-   return this.http.get(this.url).map((res:Response) => <any[]>res.json());
- }
+    return this.http.get(this.url).map((res: Response) => <any[]>res.json())
+      .catch(this.handleError);
 
-deleteQuestion(questionId:string) {
-  console.log("questionid", questionId)
-    return this.http.delete(this.url+questionId).map(res => res.json()
-    .filter(q => q.id == questionId))
-}
+  }
+  /*get all questions*/
+  getQuestionList(): Observable<any[]> {
+    return this.http.get(this.url).map((res: Response) => <any[]>res.json());
+  }
+  /*delete a quesstion*/
+  deleteQuestion(questionId: string):Observable<any> {
+    return this.http.delete(this.url + questionId).map(res => res.json()
+      .filter(q => q.id == questionId))
+  }
+  /*insert new question*/
+  submitNewQuestion(newQuestion: Question): Observable<any> {
 
- submitNewQuestion(newQuestion:Question):Observable<any> {
-  
-    let headers = new Headers({ 'Content-Type': 'application/json' });  
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    let fileObj = {"title":newQuestion.title,"subject":newQuestion.subject}
+    let fileObj = { "title": newQuestion.title, "subject": newQuestion.subject }
 
-		return this.http.post(this.url,
-      JSON.stringify(fileObj), options	
+    return this.http.post(this.url,
+      JSON.stringify(fileObj), options
     ).map(res => res.json()).catch(this.handleError);
-	}
+  }
+  /*error handler*/
+  private handleError(error: Response | any) {
 
-   private handleError (error: Response | any) {
-    
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';
