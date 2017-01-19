@@ -1,5 +1,5 @@
 import { AnswerService } from '../services/answer.service';
-import { Component, OnInit, OnChanges, Injectable, Output, EventEmitter, Input, animate, style, trigger, state, transition } from '@angular/core';
+import { Component, OnInit, OnChanges,ViewChild,ElementRef, Injectable, Output, EventEmitter, Input, animate, style, trigger, state, transition } from '@angular/core';
 import { HighlightDirective } from '../Directives/highlight.directive';
 import { SimpleChanges } from '@angular/core'
 
@@ -43,15 +43,21 @@ export class AnswerComponent implements OnChanges {
   private selectedAnswers: Answer[] = []
   private _markedAnswer: number = -1;
   private nextTimeout: any = null;
-  private color: string = '#0088c5';
   private correctAnswerCount: number = 0;
   private isLoaded = false;
+  private isHoverAnswer:boolean = true;
+  private answerIndex:number;
 
   @Output() public nextQuestion = new EventEmitter<boolean>();
   @Input() questionId: string = '';
   @Input() state: string = ''
+  @Output() answersLoaded:EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private answerService: AnswerService) { }
+  
+   constructor(private answerService: AnswerService) { 
+
+  
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['questionId'] != null) {
@@ -62,7 +68,7 @@ export class AnswerComponent implements OnChanges {
 
   getAnswers(id: string) {
     this.answers.length = 0;
-    this.color = 'grey';
+    
     this.answerService.getAnswers(id)
       .subscribe(answer => {
         this.answers.push(new Answer(answer._id, answer.questionid, answer.answer, answer.iscorrect))
@@ -72,43 +78,40 @@ export class AnswerComponent implements OnChanges {
   }
 
 
-  select(answer: Answer) { this.selectedAnswer = answer };
 
-  get answerIsCorrect(): boolean { return this.selectedAnswer.isCorrect };
+select(index,answer: Answer) { 
+  this.selectedAnswer = answer;
+  this.answerIndex = index;
+  console.log(this.selectedAnswer);
+}
+get answerIsCorrect(): boolean { return this.selectedAnswer.isCorrect };
 
-  toggleState(button: HTMLElement) {
+toggleState(id:string) {
 
-    this.color = this.answerIsCorrect ? 'green' : 'red'
-    this.nextTimeout = setTimeout(() => {
-      this.nextQuestion.emit(true);
-      this._markedAnswer = -1;
-      this.nextTimeout = null;
-    }, 500);
-  }
 
-  get hasMarkedAnswer() {
-    return this._markedAnswer > -1;
-  }
+  this.selectedAnswers.push(this.selectedAnswer);
+  this.nextTimeout = setTimeout(() => {
+    this.nextQuestion.emit(true);
+    this.answerIndex = 5;
+    this._markedAnswer = -1;
+    this.nextTimeout = null;
+  }, 2000);
+}
 
-  get markedAnswer() {
-    return this._markedAnswer;
-  }
 
-  get correctCount() {
+get hasMarkedAnswer() {
+  return this._markedAnswer > -1;
+}
 
-    this.selectedAnswers.filter(a => a.isCorrect).forEach((a => this.correctAnswerCount++))
-    return this.correctAnswerCount
-  }
+get markedAnswer() {
+  return this._markedAnswer;
+}
 
-  public answerClicked(index, checked) {
-    if (!checked) {
-      this._markedAnswer = -1;
+get correctCount() {
 
-      return;
-    }
-    this._markedAnswer = index;
-    this.selectedAnswers.push(this.selectedAnswer);
-  }
+  this.selectedAnswers.filter(a => a.isCorrect).forEach((a => this.correctAnswerCount++))
+  return this.correctAnswerCount
+}
 }
 
 export class Answer {

@@ -1,13 +1,17 @@
 <div class="container" *ngIf="isLoaded">
-    <form>
-        <span>
-            <h1>Frage {{count}} von {{length}}</h1>
-        </span>
-        <hr>
-        <span id="question" [@myTrigger]='state' [(ngModel)]="currentQuestion" ngDefaultControl name="title">{{currentQuestion?.title}}</span>   
-        <div>
-            <app-answer id="answer"(nextQuestion)="nextQuestion($event)" [questionId] ='questionId' [state]="isLoaded"></app-answer>
-        </div>
-    </form>
+    <div class="header">
+<button [routerLink]="['/app-select']" style="color:darkorange">Quiz starten</button>
+<button [routerLink]="['/app-data']" style="color:darkorange">Frage hinzufügen</button>
+<button [routerLink]="['/app-question-list']" style="color:darkorange">Fragen anzeigen</button>
 </div>
-
+<div class="questions">
+    <span>
+            <h1>Frage {{count}} von {{length}}</h1>
+    </span>
+    <hr>
+    <span id="question" [@myTrigger]='state' [(ngModel)]="currentQuestion" ngDefaultControl name="title">{{currentQuestion?.title}}</span>
+    <div>
+        <app-answer id="answer" (nextQuestion)="nextQuestion($event)" [questionId]='questionId' [state]="isLoaded"></app-answer>
+    </div>
+</div>
+</div>

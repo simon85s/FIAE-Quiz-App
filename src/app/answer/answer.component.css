@@ -6,19 +6,16 @@ ul {
   }
   
 .footer{
-  font-size: 20px;
+  font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
+  padding: 25px 0 0 ;
+  vertical-align: middle
 }
 
 
 .box1{
   padding: 25px 0 0 ;
-    /*position: absolute;
-    left: 0;
-    top: 50%;
-    width: 50%;
-    font-size: 18px;*/
-   vertical-align: middle
+  vertical-align: middle
 }
   
 
@@ -27,8 +24,6 @@ input {
   height: 20px;
   padding: 0;
   margin:0;
-  /*vertical-align: middle;*/
-  /*position: relative;*/
   top: -1px;
   *overflow: hidden;
 }
@@ -36,19 +31,24 @@ button {
 
 	color:darkorange;
 	text-transform: uppercase;
-	letter-spacing: 2px;
-	font-size: 12px;
+	letter-spacing: 1px;
+	font-size: 14px;
+  font-weight: bold;
 	padding: 10px 30px;
+  margin-bottom: 5px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border: 1px solid rgba(0,0,0,0.3);
 	border-bottom-width: 3px;
-  background-color: #0088c5
+  background-color: #0088c5;
+  height: 60px;
+  width:  400px;
+  word-spacing: 1px
 }
 
-.button.blue { color:#0088c5; }
-.button.red { color: red; }
+.green { background-color:darkgreen; }
+.red { background-color: red; }
 
 
 	button:hover {
@@ -60,5 +60,4 @@ button {
 		background-color: #CCC;
 		border-color: rgba(0,0,0,0.9);
 	}
-
 

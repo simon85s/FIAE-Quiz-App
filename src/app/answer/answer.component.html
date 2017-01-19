@@ -1,18 +1,15 @@
 <div class="form-group">
     <div class="box1">
         <ul>
-            <li *ngFor="let answer of answers;let i = index" (click)="select(answer)">
-                <label>
-                    <input #check type="checkbox" value=""(change)="answerClicked(i, check.checked)" [disabled]="!check.checked && hasMarkedAnswer"> 
-                    {{(answer.answer)}} 
-                </label>
+            <li *ngFor="let answer of answers;let i = index">
+                <div class="button">
+                    <button #button [id] ="i"[ngClass]="{'green': (answerIndex == i && answer.isCorrect),'red': (answerIndex == i && !answer.isCorrect)}"  (click)="select(i,answer)" (click)="toggleState(button.id)"
+                    >{{answer.answer}}</button> 
+                </div>
             </li>
         </ul>
-        <div class="button" *ngIf="hasMarkedAnswer" [hidden]="!hasMarkedAnswer">
-            <span><button [ngStyle]="{'background-color': color}"  #button type="submit"  (click)="toggleState(button)">Submit</button></span>
-        </div>
     </div>
-    <div class="footer" [hidden]="hasMarkedAnswer">
-        Wähle eine Antwort aus, um zur nächsten Frage zu gelangen.
+    <div class="footer">
+       <p> Wähle eine Antwort aus, um zur nächsten Frage zu gelangen.</p>
     </div>
 </div>

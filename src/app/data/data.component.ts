@@ -24,8 +24,7 @@ export class DataComponent implements OnInit {
   selectedSubject:string = ''
 
   ngOnInit() {
-
-
+    /*Initialize Form*/
     this.form = this.fb.group({
       subject:new FormControl('',[]),
       questionTitle: new FormControl('',[]),

@@ -38,6 +38,7 @@ export class QuestionComponent implements OnInit {
   questionId: string;
   count: number = 1;
   subject: string;
+ 
 
   ngOnInit() {
     /*get the selected subject via url*/
@@ -84,7 +85,7 @@ export class QuestionComponent implements OnInit {
       else {
         /*when all questions are answered we navigate to the done page*/
         setTimeout(() =>
-          this.router.navigate(['/app-done']), 250
+          this.router.navigate(['/app-done']), 50
         )
       }
     }
