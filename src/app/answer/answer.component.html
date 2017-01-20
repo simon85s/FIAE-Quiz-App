@@ -3,7 +3,7 @@
         <ul>
             <li *ngFor="let answer of answers;let i = index">
                 <div class="button">
-                    <button #button [id] ="i"[ngClass]="{'green': (answerIndex == i && answer.isCorrect),'red': (answerIndex == i && !answer.isCorrect)}"  (click)="select(i,answer)" (click)="toggleState(button.id)"
+                    <button [@myTrigger]="'fadeIn'" #button [id] ="i"[ngClass]="{'green': (answerIndex == i && answer.isCorrect),'red': (answerIndex == i && !answer.isCorrect)}"  (click)="select(i,answer)" (click)="toggleState(button.id)"
                     >{{answer.answer}}</button> 
                 </div>
             </li>

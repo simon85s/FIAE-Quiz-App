@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule} from '@angular/router';
@@ -13,7 +13,7 @@ import {AppRoutingModule,RoutableComponents} from 'app/app.routing.module';
 import { DoneComponent } from './done/done.component';
 import { QuestionListComponent } from './question-list/question-list.component';
 import { SelectComponent } from './select/select.component'
-
+import { MyErrorHandler} from './errorHandler/errorhandler.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +24,8 @@ import { SelectComponent } from './select/select.component'
     DoneComponent,
     HighlightDirective,
     QuestionListComponent,
-    SelectComponent
+    SelectComponent,
+
   ],
   imports: [
     AppRoutingModule,
@@ -34,7 +35,7 @@ import { SelectComponent } from './select/select.component'
     HttpModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ { provide: ErrorHandler, useClass: MyErrorHandler } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

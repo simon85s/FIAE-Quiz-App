@@ -14,27 +14,38 @@ import { SimpleChanges } from '@angular/core'
       state('fadeIn', style({
         opacity: '1'
       })),
-      transition('fadeOut => *', [
-        style({
-          opacity: '0', transform: 'translateX(335px)'
-        }),
+      transition('void => *', [
+         style({transform: 'translateX(100%)', opacity: 0}),
 
-        animate('500ms')
-      ]),
-      state('fadeOut', style({
-        opacity: '1'
-      })),
-      transition('* => *', [
-        style({
-          opacity: '0', transform: 'translateX(100px)'
-        }),
-
-        animate('500ms')
-      ]),
+        animate('750ms')
+      ])
     ]
   )]
 })
+//   animations: [
+//     trigger(
+//     'myTrigger', [
+//  state('fadeIn', style({
+//         opacity: '1'
+//       })),
+//       transition('void => *', [
+       
+//           style({transform: 'translateX(100%)', opacity: 0}),
+//        ])
+//       ]
+//     )
+// ]})
+  
 
+//   animations: [
+//     trigger(
+//       'slideIn', [
+//         transition('enter', [
+//           style({transform: 'translateX(100%)', opacity: 0}),
+//        ])
+//       ]
+//     )
+// ]})
 @Injectable()
 export class AnswerComponent implements OnChanges {
 
