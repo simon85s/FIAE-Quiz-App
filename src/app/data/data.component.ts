@@ -26,18 +26,18 @@ export class DataComponent implements OnInit {
   ngOnInit() {
     /*Initialize Form*/
     this.form = this.fb.group({
-      subject:new FormControl('',[]),
-      questionTitle: new FormControl('',[]),
-      answer1: new FormControl('',[]),
-      answer2: new FormControl('',[]),
-      answer3: new FormControl('',[]),
+      subject: ['', [Validators.required]],
+      questionTitle: ['', [Validators.required]],
+   answer1: ['', [Validators.required]],
+     answer2: ['', [Validators.required]],
+       answer3: ['', [Validators.required]],
       answer4: new FormControl('',[]),
       checkbox1: new FormControl('',[]),
       checkbox2: new FormControl('',[]),
       checkbox3: new FormControl('',[]),
       checkbox4: new FormControl('',[])
     })
-    this.form.valueChanges.subscribe(a => console.log("answer1 changed"))
+    this.form.valueChanges.subscribe(a => console.log("answer changed"))
   }
 
   generateNewAnswers = (a1: string, a2: string, a3: string, a4: string, c1: boolean, c2: boolean, c3: boolean, c4: boolean) => {

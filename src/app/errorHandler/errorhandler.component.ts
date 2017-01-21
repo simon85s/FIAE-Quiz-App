@@ -9,7 +9,7 @@ export class MyErrorHandler implements ErrorHandler {
 
     // I handle the given error.
     public handleError( error: any ): void {
-        console.log("I handle the given error");
+        console.log("I handle the given error", error);
     }
 
 }

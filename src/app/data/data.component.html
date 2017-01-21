@@ -1,38 +1,45 @@
 <div class="container">
-  <h1>Neue Frage</h1>
+  <h1>Neue Frage hinzufügen: </h1>
   <hr>
   <form [formGroup]="form">
-
     <div class="form-group">
       <label for="subject">Fach</label>
-      <select class="form-control" #s1 formControlName="subject" [(ngModel)]="selectedSubject" name="s">
+      <select class="form-control" #s1 formControlName="subject" required minlength="4" id ="s" [(ngModel)]="selectedSubject" name="s">
         <option  *ngFor="let subject of subjects; let i = index "> {{subject}}</option>
      </select>
-
-
     </div>
+
+
     <div class="form-group">
-      <label for="question">Frage</label>
+      <label for="question">Frage</label><span *ngIf="(form.get('questionTitle').touched || form.get('questionTitle').dirty) && form.get('questionTitle').errors">
+      Eingabe erforderlich!</span>    
       <input type="text" formControlName="questionTitle" [(ngModel)]="question" name="title" class="form-control">
+      
     </div>
+   
+
     <div class="form-group">
       <label for="answer1">Antwort 1</label>
-      <input type="checkbox" #c1 formControlName="checkbox1">richtig?
+      <input type="checkbox" #c1 formControlName="checkbox1"> <span *ngIf="(form.get('answer1').touched || form.get('answer1').dirty) && form.get('answer1').errors">
+      Eingabe erforderlich!</span>    
       <input type="text" #a1 formControlName="answer1" class="form-control">
 
       <label for="answer2">Antwort 2</label>
-      <input type="checkbox" #c2 formControlName="checkbox2">richtig?
+      <input type="checkbox" #c2 formControlName="checkbox2"><span *ngIf="(form.get('answer2').touched || form.get('answer2').dirty) && form.get('answer2').errors">
+      Eingabe erforderlich!</span>    
       <input type="text" #a2 formControlName="answer2" class="form-control">
 
-      <label for="answer3">Antwort 3</label>
-      <input type="checkbox" #c3 formControlName="checkbox3">richtig?
+      <label for="answer3">Antwort 3</label> 
+      <input type="checkbox" #c3 formControlName="checkbox3"> <span *ngIf="(form.get('answer3').touched || form.get('answer3').dirty) && form.get('answer3').errors">
+      Eingabe erforderlich!</span>    
       <input type="text" #a3 formControlName="answer3" class="form-control">
 
       <label for="answer3">Antwort 4</label>
-      <input type="checkbox" #c4 formControlName="checkbox4">richtig?
+      <input type="checkbox" #c4 formControlName="checkbox4">
       <input type="text" #a4 formControlName="answer4" class="form-control">
     </div>
-    <button type="submit" [disabled]="form.invalid" class="btn btn-default" (click)="generateNewAnswers(a1.value,a2.value,a3.value,a4.value,c1.checked, c2.checked, c3.checked, c4.checked)"
+    <button type="submit" [disabled]="form.valid" class="btn btn-default" (click)="generateNewAnswers(a1.value,a2.value,a3.value,a4.value,c1.checked, c2.checked, c3.checked, c4.checked)"
       (click)="generateNewQuestion()">Submit</button>
+     {{form.value | json}}
   </form>
 </div>

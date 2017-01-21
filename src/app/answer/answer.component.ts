@@ -17,35 +17,12 @@ import { SimpleChanges } from '@angular/core'
       transition('void => *', [
          style({transform: 'translateX(100%)', opacity: 0}),
 
-        animate('750ms')
+        animate('600ms')
       ])
     ]
   )]
 })
-//   animations: [
-//     trigger(
-//     'myTrigger', [
-//  state('fadeIn', style({
-//         opacity: '1'
-//       })),
-//       transition('void => *', [
-       
-//           style({transform: 'translateX(100%)', opacity: 0}),
-//        ])
-//       ]
-//     )
-// ]})
-  
 
-//   animations: [
-//     trigger(
-//       'slideIn', [
-//         transition('enter', [
-//           style({transform: 'translateX(100%)', opacity: 0}),
-//        ])
-//       ]
-//     )
-// ]})
 @Injectable()
 export class AnswerComponent implements OnChanges {
 
@@ -57,12 +34,14 @@ export class AnswerComponent implements OnChanges {
   private correctAnswerCount: number = 0;
   private isLoaded = false;
   private isHoverAnswer:boolean = true;
-  private answerIndex:number;
+  private answerIndex:number = 6;
+  private answerUnicodeString :any
 
   @Output() public nextQuestion = new EventEmitter<boolean>();
+  @Output() answersLoaded:EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() questionId: string = '';
   @Input() state: string = ''
-  @Output() answersLoaded:EventEmitter<boolean> = new EventEmitter<boolean>();
+ 
 
   
    constructor(private answerService: AnswerService) { 
@@ -101,6 +80,7 @@ toggleState(id:string) {
 
 
   this.selectedAnswers.push(this.selectedAnswer);
+  this.answerUnicodeString = this.answerIsCorrect ? "\u10003" : "\u10006"
   this.nextTimeout = setTimeout(() => {
     this.nextQuestion.emit(true);
     this.answerIndex = 5;

@@ -1,3 +1,5 @@
+
+
 ul {
   list-style-type: none;
   font-size: 20px;
@@ -12,12 +14,15 @@ ul {
   vertical-align: middle
 }
 
-
 .box1{
   padding: 25px 0 0 ;
   vertical-align: middle
 }
   
+
+.disabled {
+  cursor: not-allowed;
+}
 
 input {
   width: 20px;
@@ -29,7 +34,7 @@ input {
 }
 button {
 
-	color:darkorange;
+	color:#004769;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-size: 14px;
@@ -39,16 +44,17 @@ button {
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	border: 1px solid rgba(0,0,0,0.3);
+	border: 2px solid rgba(0,0,0,0.3);
 	border-bottom-width: 3px;
-  background-color: #0088c5;
+  background-color:#FFCC00;
   height: 60px;
   width:  400px;
-  word-spacing: 1px
+  word-spacing: 1px;
+  
 }
 
-.green { background-color:darkgreen; }
-.red { background-color: red; }
+.green { background-color:lime; }
+.red { background-color: darkred; }
 
 
 	button:hover {
