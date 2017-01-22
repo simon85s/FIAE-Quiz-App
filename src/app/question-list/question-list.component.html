@@ -1,10 +1,7 @@
 
 <div class="container">
   <app-header></app-header>
-    <ul *ngFor="let question of questions | orderBy:'subject';let i = index">{{i}} {{question?.subject}} {{question?.title}}
+    <ul *ngFor="let question of questions | orderBy:'subject';let i = index">{{i+'.'}} {{question?.subject}} {{question?.title}}
       <span id="deleteQuestion" class="glyphicon glyphicon-remove-circle" (click)="deleteQuestion(question)"></span>
     </ul>
 </div>
-
-
-<div *ngFor="let template of (templates$ | async) | orderBy:'Name' | templateFilter:searchText.value"

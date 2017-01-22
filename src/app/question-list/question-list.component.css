@@ -11,8 +11,9 @@
 
 .glyphicon {
     font-size: 25px;
-    color: #FFCC00;
-    margin-left:20px   
+    color: red;
+    margin-left:20px ;  
+    margin-top:5px;
 }
 
 .container {
@@ -29,7 +30,7 @@
   justify-content: center;
   width: 100%;
   height: 100%; 
-  color:#004769;
+  color:#FFCC00;
   padding-left:10px;
   overflow: scroll;
 }

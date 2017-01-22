@@ -45,7 +45,7 @@ export class QuestionComponent implements OnInit {
     let subj = this.router.url.substring(this.router.url.lastIndexOf('/') + 1)
 
     /*filter questions depending on subject and retrieve 50 questions from service*/
-    this.questionService.getQuestions().filter(q => q.subject == subj).take(50)
+    this.questionService.getQuestions().filter(q => q.subject == subj).take(50).delay(2500)
       .subscribe(question => {
 
         /*generate question objects from the retrieved json and push to array*/
