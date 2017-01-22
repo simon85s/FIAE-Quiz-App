@@ -43,7 +43,7 @@ export class DataComponent implements OnInit {
   generateNewAnswers = (a1: string, a2: string, a3: string, a4: string, c1: boolean, c2: boolean, c3: boolean, c4: boolean) => {
 
     setTimeout(() => {
-
+      this.newAnswers.length = 0;
       this.newAnswers.push(
 
         new Answer(null, this.questionId, a1, c1),
@@ -52,7 +52,7 @@ export class DataComponent implements OnInit {
         new Answer(null, this.questionId, a4, c4))
 
       this.answerService.submitNewAnswers(this.newAnswers).subscribe()
-    }, 2500)
+    }, 500)
   }
 
   generateNewQuestion = () => {
