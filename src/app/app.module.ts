@@ -14,7 +14,8 @@ import { DoneComponent } from './done/done.component';
 import { QuestionListComponent } from './question-list/question-list.component';
 import { SelectComponent } from './select/select.component'
 import { MyErrorHandler} from './errorHandler/errorhandler.component';
-import { HeaderComponent } from './header/header.component'
+import { HeaderComponent } from './header/header.component';
+import { OrderByPipe } from './orderby.pipe'
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { HeaderComponent } from './header/header.component'
     QuestionListComponent,
     SelectComponent,
     HeaderComponent,
+    OrderByPipe,
 
   ],
   imports: [
