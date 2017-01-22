@@ -64,7 +64,7 @@ export class AnswerComponent implements OnChanges {
         this.answers.push(new Answer(answer._id, answer.questionid, answer.answer, answer.iscorrect))
       },
       error => console.log(error),
-      () => { console.log("Answer retrieve completed"), this.isLoaded = true; });
+      () => { console.log("Answer retrieve completed"), this.isLoaded = true, this.answersLoaded.emit(true); });
   }
 
 
@@ -80,7 +80,6 @@ toggleState(id:string) {
 
 
   this.selectedAnswers.push(this.selectedAnswer);
-  this.answerUnicodeString = this.answerIsCorrect ? "\u10003" : "\u10006"
   this.nextTimeout = setTimeout(() => {
     this.nextQuestion.emit(true);
     this.answerIndex = 5;

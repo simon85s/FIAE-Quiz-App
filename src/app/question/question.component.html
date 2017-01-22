@@ -1,9 +1,5 @@
 <div class="container" *ngIf="isLoaded">
-    <div class="header">
-<button [routerLink]="['/app-select']">Quiz starten</button>
-<button [routerLink]="['/app-data']">Frage hinzufügen</button>
-<button [routerLink]="['/app-question-list']">Fragen anzeigen</button>
-</div>
+    <app-header></app-header>
 <div class="questions">
     <span>
             <h1>Frage {{count}} von {{length}}</h1>

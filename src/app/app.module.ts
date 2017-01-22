@@ -13,7 +13,8 @@ import {AppRoutingModule,RoutableComponents} from 'app/app.routing.module';
 import { DoneComponent } from './done/done.component';
 import { QuestionListComponent } from './question-list/question-list.component';
 import { SelectComponent } from './select/select.component'
-import { MyErrorHandler} from './errorHandler/errorhandler.component'
+import { MyErrorHandler} from './errorHandler/errorhandler.component';
+import { HeaderComponent } from './header/header.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { MyErrorHandler} from './errorHandler/errorhandler.component'
     HighlightDirective,
     QuestionListComponent,
     SelectComponent,
+    HeaderComponent,
 
   ],
   imports: [

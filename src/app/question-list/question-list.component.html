@@ -1,9 +1,8 @@
 <div class="container">
-  <div class="btn-group">
+<app-header></app-header>
     <ul *ngFor="let question of questions;let i = index">{{i}} {{question?.subject}} {{question?.title}}
       <span id="deleteQuestion" class="glyphicon glyphicon-remove-circle" (click)="deleteQuestion(question)"></span>
     </ul>
-  </div>
   <div *ngIf="length">
     <button>Next page</button>
   </div>
