@@ -1,25 +1,25 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 
 @Component({
-  selector: 'app-spinner',
-  templateUrl: './spinner.component.html',
-  styleUrls: ['./spinner.component.css']
+    selector: 'app-spinner',
+    template: require('./spinner.component.html'),
+    styles: [require('!!css!./spinner.component.css').toString()]
 })
-
 export class SpinnerComponent implements OnDestroy {
     private currentTimeout: number;
     private isDelayedRunning: boolean = false;
 
     @Input()
-    public delay: number = 100;
+    public delay: number = 200;
 
     @Input()
-    name: string;
+    name: string = 'cube';
+
+    @Input()
+    text: string;
 
     @Input()
     public set isRunning(value: boolean) {
-
-
         if (!value) {
             this.cancelTimeout();
             this.isDelayedRunning = false;

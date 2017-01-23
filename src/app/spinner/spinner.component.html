@@ -1,28 +1,32 @@
-<div id="spinner-background" *ngIf="isDelayedRunning">
+<div id="page-background" *ngIf="isDelayedRunning">
 </div>
-<div id="spinner" *ngIf="isDelayedRunning" [ngSwitch]="name">
-    <div class="spinner-central">
-        <!--Cube Spinner-->
-        <div *ngSwitchCase="'cube'">
-            <div class="sk-cube-grid">
-                <div class="sk-cube sk-cube2"></div>
-                <div class="sk-cube sk-cube1"></div>
-                <div class="sk-cube sk-cube3"></div>
-                <div class="sk-cube sk-cube4"></div>
-                <div class="sk-cube sk-cube5"></div>
-                <div class="sk-cube sk-cube6"></div>
-                <div class="sk-cube sk-cube7"></div>
-                <div class="sk-cube sk-cube8"></div>
-                <div class="sk-cube sk-cube9"></div>
+<div id="spinner" *ngIf="isDelayedRunning">
+    <div class="spinner-central" [ngSwitch]="name">
+        <div class="spinner-background rowcontainer">
+            <div class="spinner-cell">
+                <!--Cube Spinner-->
+                <div class="sk-cube-grid" *ngSwitchCase="'cube'">
+                    <div class="sk-cube sk-cube2"></div>
+                    <div class="sk-cube sk-cube1"></div>
+                    <div class="sk-cube sk-cube3"></div>
+                    <div class="sk-cube sk-cube4"></div>
+                    <div class="sk-cube sk-cube5"></div>
+                    <div class="sk-cube sk-cube6"></div>
+                    <div class="sk-cube sk-cube7"></div>
+                    <div class="sk-cube sk-cube8"></div>
+                    <div class="sk-cube sk-cube9"></div>
+                </div>
+
+                <!--Dot Spinner-->
+                <div class="bounce" *ngSwitchCase="'bounce'">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
             </div>
-        </div>
-        <!--Dot Spinner-->
-        <div *ngSwitchCase="'bounce'">
-            <div class="bounce">
-                <p style="font-size: 12px; color: #666;">Retrieving Questions</p>
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
+
+            <div class="spinner-text" *ngIf="text != ''">
+               <span> {{text}} </span>
             </div>
         </div>
     </div>
