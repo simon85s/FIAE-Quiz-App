@@ -1,10 +1,12 @@
 import {Routes,RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {DataComponent} from './data/data.component';
-import {QuestionComponent} from './question/question.component';
-import {QuestionListComponent} from './question-list/question-list.component';
-import {DoneComponent} from './done/done.component';
-import {SelectComponent} from './select/select.component';
+import {DataComponent} from './pages/pages';
+import {QuestionComponent} from './pages/pages';
+import {QuestionListComponent} from './pages/pages';
+import {DoneComponent} from './pages/pages';
+import {SelectComponent} from './pages/pages';
+
+
 
 const routes:Routes =
 [

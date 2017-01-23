@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionService } from '../services/question.service';
+import { QuestionService } from '../../shared/shared'
 import { Question } from '../question/question.component';
-import { AnswerService } from '../services/answer.service'
-import { Observable } from 'rxjs/rx'
+import { AnswerService } from '../../shared/shared';
+import {FilterPipe} from '../..shared/shared'
+import { Observable } from 'rxjs/rx';
 
 @Component({
   selector: 'app-question-list',
@@ -14,9 +15,12 @@ export class QuestionListComponent implements OnInit {
 
   constructor(private questionService: QuestionService, private answerService: AnswerService) { }
 
-  ids: string[] = [];
-  questions: Question[] = []
-
+  private ids: string[] = [];
+  private questions: Question[] = []
+  private subjects:string[]= ["its", "wi", "bwl"]
+  private selectedSubject:string = ''
+  private selectedSubjectIndex:number;
+  private subjectSelected:boolean = false;
   ngOnInit() {
     /*retrieve all questions*/
     this.questionService.getQuestionList().subscribe(question => this.questions = question,
@@ -33,8 +37,11 @@ export class QuestionListComponent implements OnInit {
       this.questionService.deleteQuestion(question._id))  
   }
 
-  get length():boolean {
-    
-    return this.questions.length > 10;
+  getSubject(index:number){
+   
+    this.selectedSubject = this.subjects[index]
+    this.selectedSubjectIndex = index;
+    this.subjectSelected = true;
+     console.log("selected subject:", this.selectedSubject)
   }
 }

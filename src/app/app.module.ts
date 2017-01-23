@@ -1,37 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {RouterModule} from '@angular/router';
-import {ReactiveFormsModule} from '@angular/forms'
-import {HighlightDirective} from './Directives/highlight.directive';
+import { RouterModule} from '@angular/router';
+import { ReactiveFormsModule} from '@angular/forms'
 import { AppComponent } from './app.component';
-import { QuestionComponent } from './question/question.component';
-import { AnswerComponent } from './answer/answer.component';
-import { DataComponent } from './data/data.component';
-import {AppRoutingModule,RoutableComponents} from 'app/app.routing.module';
-import { DoneComponent } from './done/done.component';
-import { QuestionListComponent } from './question-list/question-list.component';
-import { SelectComponent } from './select/select.component'
-import { MyErrorHandler} from './errorHandler/errorhandler.component';
-import { HeaderComponent } from './header/header.component';
-import { OrderByPipe } from './orderby.pipe';
-import { SpinnerComponent } from './spinner/spinner.component'
+import { AppRoutingModule,RoutableComponents} from 'app/app.routing.module';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+
+import {
+
+    PIPES, 
+    SERVICES,
+   
+} from './shared/shared';
+
+import {
+
+    PAGES
+    
+} from './pages/pages'
+
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionComponent,
-    AnswerComponent,
-    DataComponent,
     RoutableComponents,
-    DoneComponent,
-    HighlightDirective,
-    QuestionListComponent,
-    SelectComponent,
-    HeaderComponent,
-    OrderByPipe,
     SpinnerComponent,
-
+    PIPES,
+    PAGES,
   ],
   imports: [
     AppRoutingModule,
@@ -41,7 +37,7 @@ import { SpinnerComponent } from './spinner/spinner.component'
     HttpModule,
     ReactiveFormsModule
   ],
-  providers: [ { provide: ErrorHandler, useClass: MyErrorHandler } ],
+  providers: [ SERVICES],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

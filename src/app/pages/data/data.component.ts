@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Question } from '../question/question.component'
-import { Answer } from '../answer/answer.component'
-import { QuestionService } from '../services/question.service';
-import { AnswerService } from '../services/answer.service';
+import { Answer,Question } from '../../pages/pages'
+import { AnswerService,QuestionService } from '../../shared/shared';
 import { Observable } from 'rxjs'
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 
@@ -26,8 +24,8 @@ export class DataComponent implements OnInit {
   ngOnInit() {
     /*Initialize Form*/
     this.form = this.fb.group({
-      subject: ['', [Validators.required]],
-      questionTitle: ['', [Validators.required]],
+      subject: ['',],
+      questionTitle: ['', [Validators.required,Validators.maxLength(65),Validators.minLength(4)]],
    answer1: ['', [Validators.required]],
      answer2: ['', [Validators.required]],
        answer3: ['', [Validators.required]],
@@ -37,7 +35,7 @@ export class DataComponent implements OnInit {
       checkbox3: new FormControl('',[]),
       checkbox4: new FormControl('',[])
     })
-    this.form.valueChanges.subscribe(a => console.log("answer changed"))
+    this.form.valueChanges.subscribe(a => console.log(a))
   }
 
   generateNewAnswers = (a1: string, a2: string, a3: string, a4: string, c1: boolean, c2: boolean, c3: boolean, c4: boolean) => {

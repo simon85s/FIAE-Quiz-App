@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject, Input, Output, EventEmitter, trigger, state, style, transition, animate } from '@angular/core';
-import { QuestionService } from '../services/question.service';
-import { DoneComponent } from '../done/done.component';
+import { QuestionService } from '../../shared/shared';
+import { DoneComponent } from '../../done/done.component';
 import { Router } from '@angular/router'
-import { shuffle } from '../helpers/common';
+import { shuffle } from '../../helpers/common';
 
 @Component({
   selector: 'app-question',
@@ -41,6 +41,7 @@ export class QuestionComponent implements OnInit {
  
 
   ngOnInit() {
+    debugger;
     /*get the selected subject via url*/
     let subj = this.router.url.substring(this.router.url.lastIndexOf('/') + 1)
 
