@@ -27,12 +27,9 @@ export class QuestionListComponent implements OnInit {
 
   deleteQuestion(question: any) {
     /*retrieve all answerids to delete*/
-    this.answerService.getAnswers(question._id).delay(300).subscribe(answer => this.ids.push(answer._id), 
-    e => {},() => { source.subscribe(), location.reload() })
-      
-    /*subscribe to the observables*/
-    let source = Observable.forkJoin(this.answerService.deleteAnswers(this.ids),
-      this.questionService.deleteQuestion(question._id))  
+      this.questionService.deleteQuestion(question._id).delay(250)
+      .subscribe(e => console.log("Deleting question"), (e) => location.reload(true), 
+      () => location.reload(true))
   }
 
   getSubject(index:number){

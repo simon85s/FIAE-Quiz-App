@@ -4,7 +4,7 @@
             <li *ngFor="let answer of answers;let i = index">
                 <div class="button">
                     <button [@myTrigger]="'fadeIn'" #button [id] ="i" [ngClass] ="{'green': (answerIndex == i && answer.isCorrect),'red': (answerIndex == i && !answer.isCorrect)}"  (click)="select(i,answer)" (click)="toggleState(button.id)"
-                    >{{answer.answer}}</button> <span [ngClass] ="{'glyphicon-ok': (answerIndex == i && answer.isCorrect),'glyphicon glyphicon-remove': (answerIndex == i && !answer.isCorrect)}"></span>
+                    >{{answer.answer}}</button>
                 </div>
             </li>
         </ul>

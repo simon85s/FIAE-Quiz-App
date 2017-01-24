@@ -14,7 +14,7 @@
     <div class="alert alert-danger" *ngIf="(form.get('questionTitle').touched || form.get('questionTitle').dirty) && form.get('questionTitle').errors?.required">
       Eingabe erforderlich!</div>
     <div class="alert alert-danger" *ngIf="(form.get('questionTitle').touched || form.get('questionTitle').dirty) && form.get('questionTitle').errors?.maxlength">
-      Nicht mehr als 50 Zeichen erlaubt!</div>
+      Nicht mehr als 100 Zeichen erlaubt!</div>
     <div class="alert alert-danger" *ngIf="(form.get('questionTitle').touched || form.get('questionTitle').dirty) && form.get('questionTitle').errors?.minlength">
       Weniger als 4 Zeichen nicht zulässig</div>
     <input type="text" formControlName="questionTitle" [(ngModel)]="question" name="title" class="form-control">
@@ -43,6 +43,6 @@
     <input type="checkbox" #c4 formControlName="checkbox4">
     <input type="text" #a4 formControlName="answer4" class="form-control">
   </div>
-  <button type="submit" [disabled]="!form.valid" class="btn btn-default" (click)="generateNewAnswers(a1.value,a2.value,a3.value,a4.value,c1.checked, c2.checked, c3.checked, c4.checked)"
-    (click)="generateNewQuestion()">Submit</button>
+  <button type="submit" [disabled]="!form.valid" class="btn btn-default" 
+    (click)="generateNewQuestion(a1.value,a2.value,a3.value,a4.value,c1.checked, c2.checked, c3.checked, c4.checked)">Submit</button>
 </form>

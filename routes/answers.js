@@ -55,6 +55,7 @@ router.post('/answers', function(req, res, next){
                 res.send(err);
             }
             res.json(answer);
+            res.status(200)
         });
     }
 });

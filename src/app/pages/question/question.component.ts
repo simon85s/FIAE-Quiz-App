@@ -41,7 +41,7 @@ export class QuestionComponent implements OnInit {
  
 
   ngOnInit() {
-    debugger;
+    
     /*get the selected subject via url*/
     let subj = this.router.url.substring(this.router.url.lastIndexOf('/') + 1)
 
