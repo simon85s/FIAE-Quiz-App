@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionService } from '../../shared/shared'
 import { Question } from '../question/question.component';
-import { AnswerService } from '../../shared/shared';
-import {FilterPipe} from '../..shared/shared'
+import { AnswerService,QuestionService,FilterPipe } from '../../shared/shared';
 import { Observable } from 'rxjs/rx';
 
 @Component({

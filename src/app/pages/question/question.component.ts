@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Input, Output, EventEmitter, trigger, state, style, transition, animate } from '@angular/core';
 import { QuestionService } from '../../shared/shared';
-import { DoneComponent } from '../../done/done.component';
+import { DoneComponent } from '../../pages/pages';
 import { Router } from '@angular/router'
 import { shuffle } from '../../helpers/common';
 

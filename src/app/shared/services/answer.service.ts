@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
 import 'rxjs/Rx'
-import { Answer } from '../answer/answer.component'
-import { Observable } from 'rxjs/Observable'
+import { Answer } from '../../pages/pages';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AnswerService {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable'
-import { Question } from '../question/question.component'
+import { Question } from '../../pages/pages'
 @Injectable()
 export class QuestionService {
 
