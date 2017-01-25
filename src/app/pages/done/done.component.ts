@@ -1,5 +1,5 @@
 import {Component, OnInit, Input , SimpleChanges} from '@angular/core';
-import {Answer} from '../answer/answer.component';
+import {AnswerComponent} from '../pages'
 import {Question} from '../question/question.component';
 
 @Component({
@@ -9,13 +9,13 @@ import {Question} from '../question/question.component';
 })
 export class DoneComponent implements OnInit {
 
-  constructor() { }
-  @Input() selectedAnswers:Answer[];
-  @Input() selectedQuestions:Question[]=[]; 
+  constructor() { } 
+  answerComponent:AnswerComponent;
   isDone:boolean = false;
+  count:number = 0;
   ngOnInit() {
 
-  
+    this.count =   this.answerComponent.correctCount
   }
   
 }

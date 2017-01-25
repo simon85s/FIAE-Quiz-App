@@ -34,19 +34,20 @@ export class QuestionComponent implements OnInit {
   questionIndex: number = 0;
   currentQuestion: Question;
   isLoading: boolean = true;
+  answersLoading: boolean = true;
   state: string = 'fadeIn'
   questionId: string;
   count: number = 1;
   subject: string;
- 
+
 
   ngOnInit() {
-    
+
     /*get the selected subject via url*/
     let subj = this.router.url.substring(this.router.url.lastIndexOf('/') + 1)
 
     /*filter questions depending on subject and retrieve 50 questions from service*/
-    this.questionService.getQuestions().filter(q => q.subject == subj).take(50).delay(2500)
+    this.questionService.getQuestions().filter(q => q.subject == subj).take(50).delay(2000)
       .subscribe(question => {
 
         /*generate question objects from the retrieved json and push to array*/
@@ -91,13 +92,16 @@ export class QuestionComponent implements OnInit {
       }
     }
   }
-
+  /*Informs question component when all answers are ready*/
+  answersLoaded(loaded: boolean) {
+    this.answersLoading = loaded;
+  }
 
   get length(): number {
     return this.randomQuestions.length
   }
 
-  get isAnswered():boolean {
+  get isAnswered(): boolean {
     return this.currentQuestion.isanswered
   }
 }

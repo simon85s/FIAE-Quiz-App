@@ -1,4 +1,4 @@
- <app-spinner [name]="'cube'" [isRunning]="isLoading" [text]="'Working on it...'"></app-spinner>
+ <!--<app-spinner [name]="'cube'" [isRunning]="isLoading" [text]="'Working on it...'"></app-spinner>-->
 <div class="container" *ngIf="!isLoading">
     <app-header></app-header>
 <div class="questions">
@@ -8,7 +8,7 @@
     <hr>
     <span id="question" [@myTrigger]='state' [(ngModel)]="currentQuestion" ngDefaultControl name="title">{{currentQuestion?.title}}</span>
     <div>
-        <app-answer id="answer" (nextQuestion)="nextQuestion($event)" [questionId]='questionId' [state]="isLoaded"></app-answer>
+        <app-answer id="answer" (answersLoading)="answersLoaded($event)" (nextQuestion)="nextQuestion($event)" [questionId]='questionId' [state]="isLoaded"></app-answer>
     </div>
 </div>
 </div>

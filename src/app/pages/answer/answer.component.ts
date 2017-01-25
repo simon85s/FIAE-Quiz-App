@@ -1,6 +1,7 @@
 import { AnswerService } from '../../shared/shared';
-import { Component, OnInit, OnChanges,Injectable, Output, EventEmitter, Input, animate, style, trigger, state, transition } from '@angular/core';
+import { Component, OnInit, OnChanges, Injectable, Output, EventEmitter, Input, animate, style, trigger, state, transition } from '@angular/core';
 import { SimpleChanges } from '@angular/core'
+import { shuffle } from '../../helpers/common';
 
 @Component({
   selector: 'app-answer',
@@ -31,50 +32,50 @@ export class AnswerComponent implements OnChanges {
   private _markedAnswer: number = -1;
   private nextTimeout: any = null;
   private correctAnswerCount: number = 0;
-  private isLoaded = false;
-  private isHoverAnswer: boolean = true;
   private answerIndex: number = 6;
-  private answerUnicodeString: any
+  private buttonHover: boolean = true;
 
   @Output() public nextQuestion = new EventEmitter<boolean>();
-  @Output() answersLoaded: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() answersLoading = new EventEmitter<boolean>();
   @Input() questionId: string = '';
   @Input() state: string = ''
 
+  constructor(private answerService: AnswerService) { }
 
-
-  constructor(private answerService: AnswerService) {}
-
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges):void {
     console.log("changes")
     if (changes['questionId'] != null) {
       this.getAnswers(this.questionId);
     }
   }
 
-
-  getAnswers(id: string) {
+  /*Retrieve answers from the service*/
+  getAnswers(id: string):void {
     this.answers.length = 0;
-
     this.answerService.getAnswers(id)
       .subscribe(answer => {
         this.answers.push(new Answer(answer._id, answer.questionid, answer.answer, answer.iscorrect))
-      },
+      }),
       error => console.log(error),
-      () => { console.log("Answer retrieve completed"), this.isLoaded = true, this.answersLoaded.emit(true); });
+      () => {
+        console.log("Answer retrieve completed"),
+          this.answers = this.shuffleAnswers(this.answers),
+          this.answersLoading.emit(false)
+      };
   }
 
-
-
-  select(index, answer: Answer) {
+  /*shuffle answer array*/
+  shuffleAnswers(answers: Answer[]):Answer[] {
+    return shuffle(answers);
+  }
+  /*set the selected answer*/
+  select(index, answer: Answer):void {
     this.selectedAnswer = answer;
     this.answerIndex = index;
     console.log(this.selectedAnswer);
   }
-  get answerIsCorrect(): boolean { return this.selectedAnswer.isCorrect };
 
-  toggleState(id: string) {
-
+  toggleState(id: string):void {
 
     this.selectedAnswers.push(this.selectedAnswer);
     this.nextTimeout = setTimeout(() => {
@@ -84,21 +85,32 @@ export class AnswerComponent implements OnChanges {
       this.nextTimeout = null;
     }, 2000);
   }
+  /*Methods to show the footer depending on hover event*/
+  onHovering(event: any):void {
+    this.buttonHover = false;
+  }
 
+  onUnovering(event: any):void {
 
-  get hasMarkedAnswer() {
+    this.buttonHover = true;
+  }
+  /*Getter Methods*/
+  get hasMarkedAnswer():boolean {
     return this._markedAnswer > -1;
   }
 
-  get markedAnswer() {
+  get markedAnswer():number {
     return this._markedAnswer;
   }
 
-  get correctCount() {
+  get correctCount():number {
 
     this.selectedAnswers.filter(a => a.isCorrect).forEach((a => this.correctAnswerCount++))
     return this.correctAnswerCount
   }
+  get answerIsCorrect(): boolean {
+    return this.selectedAnswer.isCorrect
+  };
 }
 
 export class Answer {
