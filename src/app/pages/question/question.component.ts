@@ -33,7 +33,7 @@ export class QuestionComponent implements OnInit {
   randomQuestions: Array<Question> = []
   questionIndex: number = 0;
   currentQuestion: Question;
-  isLoaded: boolean = false;
+  isLoading: boolean = true;
   state: string = 'fadeIn'
   questionId: string;
   count: number = 1;
@@ -58,7 +58,7 @@ export class QuestionComponent implements OnInit {
         this.questionId = this.currentQuestion.id;
       },
       error => console.log(error),
-      () => { this.isLoaded = true, console.log("Question retrieve completed") });
+      () => { this.isLoading = false, console.log("Question retrieve completed") });
   }
 
   selectRandomQuestions(questions: Question[]) {

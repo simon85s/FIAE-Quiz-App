@@ -1,5 +1,5 @@
- <app-spinner [name]="'cube'" [isRunning]="'true'" [text]="'Working on it...'"></app-spinner>
-<div class="container" *ngIf="isLoaded">
+ <app-spinner [name]="'cube'" [isRunning]="isLoading" [text]="'Working on it...'"></app-spinner>
+<div class="container" *ngIf="!isLoading">
     <app-header></app-header>
 <div class="questions">
     <span>

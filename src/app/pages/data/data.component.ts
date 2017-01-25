@@ -20,6 +20,7 @@ export class DataComponent implements OnInit {
   newAnswers: Answer[] = []
   subjects: Array<string> = ["bwl", "its", "wi"]
   selectedSubject: string = 'bwl'
+  isLoading:boolean = false;
 
   ngOnInit() {
 
@@ -42,7 +43,7 @@ export class DataComponent implements OnInit {
 
   /*Generates */
   generateNewQuestion = (a1: string, a2: string, a3: string, a4: string, c1: boolean, c2: boolean, c3: boolean, c4: boolean) => {
-   
+    this.isLoading = true;
     let question = new Question(undefined, this.question, this.selectedSubject)
     this.questionService.submitNewQuestion(question).subscribe(a => this.questionId = a._id, (e) => { }, ()
       => {
@@ -55,8 +56,8 @@ export class DataComponent implements OnInit {
         new Answer(null, this.questionId, a3, c3),
         new Answer(null, this.questionId, a4, c4))
 
-      this.answerService.submitNewAnswers(this.newAnswers).subscribe(a => console.log("answer generated with questionid"),
-      (e) => console.log(e), () => location.reload)
+      this.answerService.submitNewAnswers(this.newAnswers).delay(1000).subscribe(a => console.log("answer generated with questionid"),
+      (e) => console.log(e), () => {location.reload(), this.isLoading = false});
     })
   }
 
