@@ -3,6 +3,7 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable'
 import { Question } from '../../pages/pages'
 @Injectable()
+
 export class QuestionService {
 
   private url: string = 'http://localhost:3000/api/questions/';
@@ -15,19 +16,13 @@ export class QuestionService {
     return this.http.get(this.url).flatMap((res: Response) => <any>res.json().filter(res => res._id != null));
   }
 
-  getLastQuestionId(): Observable<any[]> {
-
-    return this.http.get(this.url).map((res: Response) => <any[]>res.json())
-      .catch(this.handleError);
-
-  }
   /*get all questions*/
   getQuestionList(): Observable<any[]> {
     return this.http.get(this.url).map((res: Response) => <any[]>res.json());
   }
   /*delete a quesstion*/
   deleteQuestion(questionId: string):Observable<any> {
-    return this.http.delete(this.url + questionId).map(res => res.json()
+    return this.http.delete(this.url + questionId).map(res => <any>res.json()
       .filter(q => q.id == questionId))
   }
   /*insert new question*/

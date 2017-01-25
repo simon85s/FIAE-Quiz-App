@@ -50,7 +50,6 @@ router.post('/questions', function(req, res, next){
     
 router.delete('/questions/:id', function(req, res, next){
 
-   console.log("para",req.params.id)
     db.questions.remove({_id: mongojs.ObjectID(req.params.id)}), function(err,question){
 
         if(err){
