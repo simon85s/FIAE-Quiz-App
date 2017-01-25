@@ -40,6 +40,7 @@ export class AnswerComponent implements OnChanges {
   @Input() questionId: string = '';
   @Input() state: string = ''
 
+  
   constructor(private answerService: AnswerService) { }
 
   ngOnChanges(changes: SimpleChanges):void {
