@@ -40,7 +40,7 @@ export class AnswerComponent implements OnChanges {
   @Input() questionId: string = '';
   @Input() state: string = ''
 
-  
+
   constructor(private answerService: AnswerService) { }
 
   ngOnChanges(changes: SimpleChanges):void {
@@ -82,7 +82,7 @@ export class AnswerComponent implements OnChanges {
     this.nextTimeout = setTimeout(() => {
       this.nextQuestion.emit(true);
       this.answerIndex = 5;
-      this._markedAnswer = -1;
+      // this._markedAnswer = -1;
       this.nextTimeout = null;
     }, 2000);
   }
@@ -97,7 +97,9 @@ export class AnswerComponent implements OnChanges {
   }
   /*Getter Methods*/
   get hasMarkedAnswer():boolean {
+   
     return this._markedAnswer > -1;
+    
   }
 
   get markedAnswer():number {
