@@ -2,13 +2,6 @@
   cursor: pointer;
 }
 
-.btn-group {
-  height: 100%;
-  width: 100%;
-  font-family: Arial, Helvetica, sans-serif; 
-}
-
-
 
 li{
   display: table-cell; 
@@ -23,12 +16,6 @@ li{
     color: red;
     margin-left:20px ;  
     margin-top:5px;
-}
-
-.test {
-  width:100%;
-  height:15%;
- 
 }
 
 .container {
@@ -53,10 +40,20 @@ li{
 
 
 button {
-  background-color: #004769;
-  color:#FFCC00;
-  width:35px;
-  margin-left:35px;
-  margin-bottom:35px;
-  }
-
+	color:#004769;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	font-size: 14px;
+  font-weight: bold;
+	padding: 10px 30px;
+  margin-bottom: 5px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 2px solid rgba(0,0,0,0.3);
+	border-bottom-width: 3px;
+	background-color:#FFCC00;
+	height: 60px;
+	width:  100px;
+	word-spacing: 1px;
+}

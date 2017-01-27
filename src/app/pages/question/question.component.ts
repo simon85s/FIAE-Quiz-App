@@ -63,7 +63,7 @@ export class QuestionComponent implements OnInit {
   }
 
   selectRandomQuestions(questions: Question[]) {
-    this.randomQuestions = shuffle(questions).slice(0, 10);
+    this.randomQuestions = shuffle(questions).slice(0, 15);
   }
 
   /*returns the current question index*/

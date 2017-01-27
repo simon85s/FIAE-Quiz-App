@@ -15,7 +15,8 @@ export class DoneComponent implements OnInit {
   count:number = 0;
   ngOnInit() {
 
-    this.count =   this.answerComponent.correctCount
+    this.count =  this.answerComponent.correctCount
+    console.log("count",this.count)
   }
   
 }
