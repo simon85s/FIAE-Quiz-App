@@ -1,5 +1,6 @@
 <app-spinner [name]="'cube'" [isRunning]="isLoading" [text]="'Working on it...'"></app-spinner>
 <app-header></app-header>
+<div class="container">
 <h1>Neue Frage hinzufügen: </h1>
 <hr>
 <form [formGroup]="form">
@@ -47,3 +48,4 @@
   <button type="submit" [disabled]="!form.valid" class="btn btn-default" 
     (click)="generateNewQuestion(a1.value,a2.value,a3.value,a4.value,c1.checked, c2.checked, c3.checked, c4.checked)">Submit</button>
 </form>
+<div>

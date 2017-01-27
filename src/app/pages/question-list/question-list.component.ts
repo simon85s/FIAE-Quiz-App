@@ -39,4 +39,8 @@ export class QuestionListComponent implements OnInit {
     this.subjectSelected = true;
      console.log("selected subject:", this.selectedSubject)
   }
+
+  fotze(event:any) {
+    console.log(event)
+  }
 }

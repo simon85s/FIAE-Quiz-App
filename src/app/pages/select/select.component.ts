@@ -7,12 +7,13 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./select.component.css']
 })
 export class SelectComponent implements OnInit {
+  private buttonHover: boolean = true;
 
   constructor(private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  
+
   selectSubject(event: any) {
 
     window.setTimeout(() => {
@@ -30,7 +31,7 @@ export class SelectComponent implements OnInit {
           break;
         default:
       }
-    },500)
+    }, 500)
   }
 }
 

@@ -14,17 +14,17 @@ export class DataComponent implements OnInit {
 
   constructor(private questionService: QuestionService, private answerService: AnswerService, private fb: FormBuilder) { }
 
-  questionId: string;
-  form: FormGroup;
-  question: string;
-  newAnswers: Answer[] = []
-  subjects: Array<string> = ["bwl", "its", "wi"]
-  selectedSubject: string = 'bwl'
-  isLoading:boolean = false;
+  private questionId: string;
+  private form: FormGroup;
+  private question: string;
+  private newAnswers: Answer[] = []
+  private subjects: Array<string> = ["bwl", "its", "wi"]
+  private selectedSubject: string = 'bwl'
+  private isLoading:boolean = false;
 
   ngOnInit() {
 
-    /*Initialize Form*/
+    /*Initialize Form and set Form Validation*/
     this.newAnswers.length = 0;
     this.form = this.fb.group({
       subject: ['',],
@@ -38,7 +38,7 @@ export class DataComponent implements OnInit {
       checkbox3: new FormControl('', []),
       checkbox4: new FormControl('', [])
     })
-    this.form.valueChanges.subscribe(a => console.log(a))
+    this.form.valueChanges.subscribe(changes => console.log("FormControl changed:", changes))
   }
 
   /*Generates */

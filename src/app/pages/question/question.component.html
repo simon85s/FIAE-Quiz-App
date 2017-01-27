@@ -3,7 +3,7 @@
     <app-header></app-header>
 <div class="questions">
     <span>
-            <h1>Frage {{count}} von {{length}}</h1>
+        <h1>Frage {{count}} von {{length}}</h1>
     </span>
     <hr>
     <span id="question" [@myTrigger]='state' [(ngModel)]="currentQuestion" ngDefaultControl name="title">{{currentQuestion?.title}}</span>

@@ -30,7 +30,9 @@ const routes:Routes =
  },
  {
      path:'app-select', component: SelectComponent
- }
+ },
+ { path: '',   redirectTo: '/app-select', pathMatch: 'full' 
+ },
 ]
 
 @NgModule({

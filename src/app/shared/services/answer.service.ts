@@ -12,24 +12,26 @@ export class AnswerService {
   constructor(private http: Http) {
     console.log('Answer Service Initialized')
   }
+  
+ /*Retrieve all answers associated with the question*/
+  getAnswers(questionid: string): Observable<any> {
 
-  getAnswers(questionid:string): Observable<any> {
-    console.log("getAnswers Id: ", questionid)
     return this.http.get(this.url)
       .switchMap((res: any) => <any>res.json()
         .filter(a => a.questionid === questionid))
   };
 
-  deleteAnswers(answerIds:any[]) {
-  console.log("ANSWERIDS", answerIds)
+  /*Delete request*/
+  deleteAnswers(answerIds: any[]): Observable<any> {
 
-  return Observable.from(answerIds).flatMap(a => { (console.log("DELETING",a))
-     return this.http.delete(this.url+a).map(res => res.json())
-  })
-}
+    return Observable.from(answerIds).flatMap(a => {
+      return this.http.delete(this.url + a).map(res => res.json())
+    })
+  }
 
+  /*Post Request*/
   submitNewAnswers(answers: Answer[]): Observable<any> {
-  
+
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
@@ -38,7 +40,7 @@ export class AnswerService {
       let newAnswerObject = {
         "questionid": a.questionId, "answer": a.answer, "iscorrect": a.isCorrect
       }
-    
+
       return this.http.post(this.url, JSON.stringify(newAnswerObject), options)
         .map(res => res.json()).catch(this.handleError);
     })
