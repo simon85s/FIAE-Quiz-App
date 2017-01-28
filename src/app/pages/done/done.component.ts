@@ -14,7 +14,10 @@ export class DoneComponent implements OnInit {
   ngOnInit() {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> refs/remotes/origin/master
     this.count =  this.answerComponent.correctCount
     console.log("count",this.count)
   }
