@@ -23,7 +23,7 @@ const routes:Routes =
      path: 'app-question/wi', component: QuestionComponent,
  },
  {
-     path:'app-done', component: DoneComponent
+     path:'app-done', component: DoneComponent,
  },
  {
     path: 'app-question-list', component: QuestionListComponent

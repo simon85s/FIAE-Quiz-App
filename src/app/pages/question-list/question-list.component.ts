@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../question/question.component';
-import { AnswerService,QuestionService,FilterPipe } from '../../shared/shared';
+import { AnswerService, QuestionService, FilterPipe } from '../../shared/shared';
 import { Observable } from 'rxjs/rx';
 
 @Component({
@@ -15,32 +15,30 @@ export class QuestionListComponent implements OnInit {
 
   private ids: string[] = [];
   private questions: Question[] = []
-  private subjects:string[]= ["its", "wi", "bwl"]
-  private selectedSubject:string = ''
-  private selectedSubjectIndex:number;
-  private subjectSelected:boolean = false;
+  private subjects: string[] = ["its", "wi", "bwl"]
+  private selectedSubject: string = ''
+  private selectedSubjectIndex: number;
+  private subjectSelected: boolean = false;
+
   ngOnInit() {
     /*retrieve all questions*/
     this.questionService.getQuestionList().subscribe(question => this.questions = question,
-      e => {}, () => console.log(this.questions))
+      e => { }, () => console.log(this.questions))
   }
 
   deleteQuestion(question: any) {
-    /*retrieve all answerids to delete*/
-      this.questionService.deleteQuestion(question._id).delay(250)
-      .subscribe(e => console.log("Deleting question"), (e) => location.reload(true), 
-      () => location.reload(true))
+    //*Delete Question*/
+    this.questionService.deleteQuestion(question._id).delay(500).subscribe(a => console.log("Deleting Question"),
+      (e) => console.log(e), () => location.reload()
+    );
   }
 
-  getSubject(index:number){
-   
+
+  getSubject(index: number) {
+
     this.selectedSubject = this.subjects[index]
     this.selectedSubjectIndex = index;
     this.subjectSelected = true;
-     console.log("selected subject:", this.selectedSubject)
-  }
-
-  fotze(event:any) {
-    console.log(event)
+    console.log("selected subject:", this.selectedSubject)
   }
 }

@@ -1,46 +1,32 @@
-<app-header></app-header>
-<div *ngIf="!subjectSelected" class="container" style="bottom:50%">
-  <div class="list-group">
-    <a class="list-group-item">
-      <div class="checkbox pull-left">
-      </div>
-      <div class="pull-left form-control-inline">
-        <h4><input type="checkbox" name="price" (click)="getSubject(2)" class="list-group-item-heading">BWL</h4>
-      </div>
-      <span class="label label-danger pull-right">Anzahl</span>
-      <div class="clearfix"></div>
-    </a>
-    <a  class="list-group-item">
-      <div class="checkbox pull-left">
-      </div>
-      <div class="pull-left">
-        <h4><input type="checkbox" name="price"(click)="getSubject(0)" class="list-group-item-heading">ITS</h4>
-      </div>
-      <span class="label label-primary pull-right">Anzahl</span>
-      <div class="clearfix"></div>
-    </a>
-     <a  class="list-group-item">
-      <div class="checkbox pull-left">
-      </div>
-      <div class="pull-left" >
-        <h4><input type="checkbox" name="price" (click)="getSubject(1)" class="list-group-item-heading">WI</h4>
-      </div>
-      <span class="label label-primary pull-right">Anzahl</span>
-      <div class="clearfix"></div>
-    </a>
+<<<<<<< HEAD
+<app-header></app-header> 
+ <div class="btnContainer">
+      <button (click)="getSubject(2)" class="list-group-item-heading">BWL</button>
+      <button (click)="getSubject(0)" class="list-group-item-heading">ITS</button>
+      <button (click)="getSubject(1)" class="list-group-item-heading">WI</button>
   </div>
+
+<div *ngIf="!subjectSelected" class="container" style="top:35%">   
 </div>
-<div style="width:15%; padding-top:45px">
-<ul>
-  <li *ngFor="let subject of subjects;let i = index">
-    <div><input type="checkbox" name="price" (click)="getSubject(i)">{{subject}}</div>
-  </li>
-</ul>
+<div style="height:75%; padding-top:125px">
+<div *ngIf="subjectSelected != ''">
+=======
+<app-header> <div class="btnContainer" style="text-align: center;padding-top:15px"><h1>Fragenliste</h1>
+      <button (click)="getSubject(2)" class="list-group-item-heading">BWL</button>
+      <button (click)="getSubject(0)" class="list-group-item-heading">ITS</button>
+      <button (click)="getSubject(1)" class="list-group-item-heading">WI</button>
+  </div></app-header> 
+  
+<div *ngIf="!subjectSelected" class="container" style="bottom:35%">
+    
 </div>
-<div style="height:75%">
+<div style="height:75%; padding-top:65px" >
 <div *ngIf="selectedSubject != ''">
+>>>>>>> 18f3f1f834f936e000dc8a17e36d05d1dc9910d8
   <ul *ngFor="let question of questions | filter:selectedSubject;let i = index">{{i+'.'}} {{question?.subject}} {{question?.title}}
     <span id="deleteQuestion" class="glyphicon glyphicon-remove-circle" (click)="deleteQuestion(question)"></span>
   </ul>
 </div>
 <div>
+
+  

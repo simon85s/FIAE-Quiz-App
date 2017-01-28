@@ -24,25 +24,25 @@
 
   <div class="form-group">
     <label for="answer1">Antwort 1</label>
-    <input type="checkbox" #c1 formControlName="checkbox1">
+    <input type="checkbox" #c1 formControlName="checkbox1"><span *ngIf="c1.checked">Korrekte Antwort!</span>
     <div class="alert alert-danger" *ngIf="(form.get('answer1').touched || form.get('answer1').dirty) && form.get('answer1').errors?.required">
       Mindestens 3 Antworten erforderlich!</div>
     <input type="text" #a1 formControlName="answer1" class="form-control">
 
     <label for="answer2">Antwort 2</label>
-    <input type="checkbox" #c2 formControlName="checkbox2">
+    <input type="checkbox" #c2 formControlName="checkbox2"><span *ngIf="c2.checked">Korrekte Antwort!</span>
     <div class="alert alert-danger" *ngIf="(form.get('answer2').touched || form.get('answer2').dirty) && form.get('answer2').errors?.required">
       Mindestens 3 Antworten erforderlich!</div>
     <input type="text" #a2 formControlName="answer2" class="form-control">
 
     <label for="answer3">Antwort 3</label>
-    <input type="checkbox" #c3 formControlName="checkbox3">
+    <input type="checkbox" #c3 formControlName="checkbox3"><span *ngIf="c3.checked">Korrekte Antwort!</span>
     <div class="alert alert-danger" *ngIf="(form.get('answer3').touched || form.get('answer3').dirty) && form.get('answer3').errors?.required">
       Mindestens 3 Antworten erforderlich!</div>
     <input type="text" #a3 formControlName="answer3" class="form-control">
 
     <label for="answer3">Antwort 4</label>
-    <input type="checkbox" #c4 formControlName="checkbox4">
+    <input type="checkbox" #c4 formControlName="checkbox4"><span *ngIf="c4.checked">Korrekte Antwort!</span>
     <input type="text" #a4 formControlName="answer4" class="form-control">
   </div>
   <button type="submit" [disabled]="!form.valid" class="btn btn-default" 

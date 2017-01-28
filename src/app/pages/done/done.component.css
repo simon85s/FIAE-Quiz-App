@@ -1,4 +1,6 @@
 #done {
+  top:20%;
   text-align: center;
-  color:#0088c5
+  color:#0088c5;
+  padding-top:10px
 }

@@ -63,7 +63,7 @@ export class QuestionComponent implements OnInit {
   }
 
   selectRandomQuestions(questions: Question[]) {
-    this.randomQuestions = shuffle(questions).slice(0, 10);
+    this.randomQuestions = shuffle(questions).slice(0, 15);
   }
 
   /*returns the current question index*/
@@ -87,7 +87,7 @@ export class QuestionComponent implements OnInit {
       else {
         /*when all questions are answered we navigate to the done page*/
         setTimeout(() =>
-          this.router.navigate(['/app-done']), 50
+          this.router.navigate(['/app-done']), 250
         )
       }
     }
