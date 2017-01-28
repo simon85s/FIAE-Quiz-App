@@ -1,4 +1,7 @@
 # FIAEQuizApp
+@ITS Lehrer: Es muss Node.js installiert sein, anschließend können mit "npm install" die Pakete wiederhergestellt werden.
+"npm start" bundelt die Module und startet den Node Server. Applkation ist schließlich unter `http://localhost:4200/` aufrufbar.
+
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.20-4.
 
