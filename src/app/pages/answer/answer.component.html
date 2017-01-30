@@ -4,7 +4,7 @@
             <li *ngFor="let answer of answers;let i = index">
                 <div class="buttons"  >
                     <button  [@myTrigger]="'fadeIn'" #button [id]="i" [ngClass]="{'green': (answerIndex == i && answer.isCorrect),'red': (answerIndex == i && !answer.isCorrect)}"
-                       (mouseenter)="onHovering($event)" (mouseleave)="onUnovering($event)" (click)="select(i,answer)" (click)="toggleState(button.id)">{{answer.answer}}</button>
+                       (mouseenter)="onHovering($event)" (mouseleave)="onUnHovering($event)" (click)="select(i,answer)" (click)="toggleState(button.id)">{{answer.answer}}</button>
                 </div>
             </li>
         </ul>

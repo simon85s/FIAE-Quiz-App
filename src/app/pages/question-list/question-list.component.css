@@ -60,9 +60,9 @@ button {
 
 
 .btnContainer {
-  position: fixed;
+  position: absolute;
   z-index: 1005;
   width:100%;
   top:10%;
-  padding-left:10px
+  padding-left:10px;
 }

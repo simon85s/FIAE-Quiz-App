@@ -91,7 +91,7 @@ export class AnswerComponent implements OnChanges {
     this.buttonHover = false;
   }
 
-  onUnovering(event: any):void {
+  onUnHovering(event: any):void {
 
     this.buttonHover = true;
   }

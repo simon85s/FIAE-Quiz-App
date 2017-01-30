@@ -1,9 +1,9 @@
 <app-spinner [name]="'cube'" [isRunning]="isLoading" [text]="'Working on it...'"></app-spinner>
 <app-header></app-header>
 <div class="container">
-<h1>Neue Frage hinzufügen: </h1>
 <hr>
 <form [formGroup]="form">
+  <h1>Neue Frage hinzufügen: </h1>
   <div class="form-group">
     <label for="subject">Fach</label>
     <select class="form-control" #s1 formControlName="subject" id="s" [(ngModel)]="selectedSubject" name="s">
