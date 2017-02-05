@@ -12,10 +12,10 @@ li{
   
 }
 .glyphicon {
-    font-size: 25px;
+    font-size: 20px;
     color: red;
-    margin-left:20px ;  
-    margin-top:5px;
+    margin-left:10px ; 
+    cursor: pointer; 
 }
 
 .container {
@@ -65,4 +65,9 @@ button {
   width:100%;
   top:10%;
   padding-left:10px;
+}
+
+.selectedButton {
+  	background-color: #CCC;
+		border-color: rgba(0,0,0,0.9);
 }

@@ -14,13 +14,7 @@ const routes:Routes =
      path:'app-data', component: DataComponent
  },
  {
-     path: 'app-question/bwl', component: QuestionComponent,
- },
- {
-     path: 'app-question/its', component: QuestionComponent,
- },
- {
-     path: 'app-question/wi', component: QuestionComponent,
+     path: 'app-question/:subject', component: QuestionComponent,
  },
  {
      path:'app-done', component: DoneComponent,

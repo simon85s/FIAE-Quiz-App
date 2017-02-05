@@ -15,7 +15,7 @@ export class SelectComponent implements OnInit {
 
 
   selectSubject(event: any) {
-    debugger;
+  
     window.setTimeout(() => {
 
       switch (event.id) {

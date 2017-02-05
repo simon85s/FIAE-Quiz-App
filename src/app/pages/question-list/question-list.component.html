@@ -1,18 +1,28 @@
-<app-header></app-header> 
- <div class="btnContainer">
-      <button (click)="getSubject(2)" class="list-group-item-heading">BWL</button>
-      <button (click)="getSubject(0)" class="list-group-item-heading">ITS</button>
-      <button (click)="getSubject(1)" class="list-group-item-heading">WI</button>
-  </div>
-
-<div *ngIf="!subjectSelected" class="container" style="top:35%">   
+<app-header></app-header>
+<div class="btnContainer">
+  <button [ngClass]="{'selectedButton': (subjectSelected && selectedSubjectIndex == 2)}" (click)="getSubject(2)" class="list-group-item-heading">BWL</button>
+  <button [ngClass]="{'selectedButton': (subjectSelected && selectedSubjectIndex == 0)}" (click)="getSubject(0)" class="list-group-item-heading">ITS</button>
+  <button [ngClass]="{'selectedButton': (subjectSelected && selectedSubjectIndex == 1)}" (click)="getSubject(1)" class="list-group-item-heading">WI</button>
 </div>
+
 <div style="height:75%; padding-top:125px">
 <div *ngIf="subjectSelected != ''">
-  <ul *ngFor="let question of questions | filter:selectedSubject;let i = index">{{i+'.'}} {{question?.subject}} {{question?.title}}
-    <span id="deleteQuestion" class="glyphicon glyphicon-remove-circle" (click)="deleteQuestion(question)"></span>
-  </ul>
+    <table class="table table-sm table-inverse">
+      <thead>
+        <tr>
+          <th style="width:50%;padding-left: 15px">Fragenübersicht:</th>
+          <th></th>
+        </tr>
+      </thead>
+      <ul *ngFor="let question of questions | filter:selectedSubject;let i = index"> 
+    <span id="deleteQuestion" ></span>
+      <tbody>
+        <span style="margin-top: 10px" class="glyphicon glyphicon-remove-circle"(click)="deleteQuestion(question)"></span>
+        <tr>
+          <th scope="row">{{i+ 1 + '.'}} {{question?.subject}} {{question?.title}}</th>  
+        </tr>
+      </tbody>
+       </ul>
+    </table>
 </div>
 <div>
-
-  
